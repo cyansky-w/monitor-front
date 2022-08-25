@@ -16,8 +16,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // import ApiService from '@/service/api.service.js';
 
 
-// import {useMonitor} from '@/utils/monitor/index.js'
-// useMonitor('afwafafsaerfsdfghtrrydr');
+import {useMonitor} from '@/utils/monitor/index.js'
+useMonitor('afwafafsaerfsdfghtrrydr');
 
 const app=createApp(App);
  app.use(router)

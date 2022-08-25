@@ -30,11 +30,10 @@ export function timing() {
       let duration = firstInput.duration; // 处理的耗时
       if (inputDelay > 0 || duration > 0) {
         tracker.send({
-          kind: "experience", // 用户体验指标
           type: "firstInputDelay", // 首次输入延迟
           inputDelay: inputDelay ? inputDelay: 0, // 延迟的时间
           duration: duration ? duration: 0,
-          startTime: firstInput.startTime, // 开始处理的时间
+          startTime: firstInput.startTime+window.performance.timeOrigin, // 开始处理的时间
           selector: lastEvent
             ? getSelector(lastEvent.path || lastEvent.target)
             : "",
@@ -65,7 +64,6 @@ export function timing() {
       const orignTime=this.window.performance.orignTime;
       // 发送时间指标
       tracker.send({
-        kind: "experience", // 用户体验指标
         type: "timing", // 统计每个阶段的时间
         parseDNSTime:domainLookupEnd - domainLookupStart,//dns解析耗时
         connectTime: connectEnd - connectStart, // TCP连接耗时
@@ -85,7 +83,6 @@ export function timing() {
       console.log("FMP", FMP);
       console.log("LCP", LCP);
       tracker.send({
-        kind: "experience",
         type: "paint",
         firstPaint: FP ? FP.startTime : 0,
         firstContentPaint: FCP ? FCP.startTime : 0,

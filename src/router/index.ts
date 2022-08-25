@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/pages/homeView/homeView.vue';
 import HealthState from '../views/pages/healthState/healthState.vue';
 import PerformanceView from '../views/pages/performanceView/performanceView.vue';
@@ -8,7 +8,7 @@ import MapView from '../views/pages/mapView/mapView.vue';
 import IndexView from '@/views/pages/index/index.vue'
 import JkhsfxView from '../views/pages/jkhsfxView/jkhsfxView.vue';
 import YmxnfxView from '../views/pages/ymxnfxView/ymxnfxView.vue';
-
+import SettingsView from '../views/pages/settings/settings.vue';
 
 const routes = [
     {
@@ -51,6 +51,11 @@ const routes = [
           component:IndexView
         },
       ]
+    },
+    {
+      path:"/settings",
+      name:"settings",
+      component:SettingsView
     },
     {
       path: '/test',
@@ -114,7 +119,7 @@ const routes = [
   ]
   
   const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
   })
   

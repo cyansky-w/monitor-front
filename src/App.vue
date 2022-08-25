@@ -52,6 +52,7 @@ export default {
 }
 
 
+
 .fs-s {
   font-size: .8rem;
 }

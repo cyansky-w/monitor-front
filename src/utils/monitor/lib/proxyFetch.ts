@@ -44,7 +44,6 @@ export function proxyFetch(){
 
                         console.log("_response_",responseCopy,res);
                         tracker.send({
-                            kind: "stability",
                             type: "fetch",
                             pathname: url,
                             status: responseCopy.status + "-" + responseCopy.statusText, // 状态码
@@ -53,16 +52,6 @@ export function proxyFetch(){
                             params: argumentsList[0] || "", // 入参
                         });
                     }
-                        // tracker.send({
-                        //     kind: "stability",
-                        //     type: "xhr",
-                        //     eventType: type,
-                        //     pathname: thisArg.logData.url,
-                        //     status: status + "-" + statusText, // 状态码
-                        //     duration,
-                        //     response: thisArg.response ? JSON.stringify(thisArg.response) : "", // 响应体
-                        //     params: argumentsList[0] || "", // 入参
-                        //   });
                         handler();
                     }
                     return responseCopy;

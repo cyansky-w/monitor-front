@@ -46,7 +46,6 @@ export function resource() {
 
         }
         tracker.send({
-          kind: "stability", // 监控指标的大类，稳定性
           type: "resourceError", // 资源获取错误
           filename: event.target.src || event.target.href, // 哪个文件报错了
           tagName: event.target.tagName,
@@ -65,18 +64,14 @@ export function resource() {
                 if(errorImgProxy.indexOf(name)===-1&&ASSETS_TYPE.indexOf(initiatorType) !== -1){
                     const {connectStart, domainLookupStart, domainLookupEnd, connectEnd, duration, encodedBodySize, requestStart, responseEnd, responseStart} = item;
                     tracker.send({
-                    kind: "stability",
                     type: "resource",
                     name,
-                    domainLookupStart,
-                    domainLookupEnd,
-                    connectStart,
-                    connectEnd, // 状态码
+                    parseDNSTime:domainLookupStart-domainLookupEnd,
+                    connectTime:connectStart-connectEnd,
                     duration,
                     encodedBodySize,
-                    requestStart,
-                    responseEnd,
-                    responseStart,
+                    ttfbTime: responseStart - requestStart, // 首字节到达时间
+                    responseTime: responseEnd - responseStart, // response响应耗时
                     });
                 }
             }

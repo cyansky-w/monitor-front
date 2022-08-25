@@ -69,7 +69,6 @@ let oldSend=XMLHttpRequest.prototype.send
           let status = thisArg.status;
           let statusText = thisArg.statusText;
           tracker.send({
-            kind: "stability",
             type: "xhr",
             eventType: type,
             pathname: thisArg.logData.url,

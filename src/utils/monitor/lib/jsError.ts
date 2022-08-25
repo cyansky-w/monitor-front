@@ -9,7 +9,6 @@ export function injectJsError() {
       apply:function (target,thisArg,...argumentList) {
       console.log('error+++++++++++',argumentList)
       tracker.send({
-        kind: "stability", // 监控指标的大类，稳定性
         type: "customError", // 资源获取错误
         message: argumentList[0], // 报错信息
       });
@@ -26,7 +25,6 @@ export function injectJsError() {
     let lastEvent = getLastEvent(); // 获取到最后一个交互事件
     console.log('jserror',lastEvent)
     tracker.send({
-      kind: "stability", // 监控指标的大类，稳定性
       type: "jsError", // js执行错误
       message, // 报错信息
       filename, // 哪个文件报错了
@@ -61,7 +59,6 @@ export function injectJsError() {
           stack = getLines(reason.stack);
         }
         tracker.send({
-          kind: "stability", // 监控指标的大类，稳定性
           type: "promiseError", // promise错误
           message, // 报错信息
           filename, // 哪个文件报错了

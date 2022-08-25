@@ -87,7 +87,7 @@ function gotoHome(){
   router.push({ name: 'home', params: { projectId:props.projectId }})
 }
 function gotoSet(){
-  router.push({ name: 'test', params: { projectId:props.projectId }})
+  router.push({ name: 'settings', params: { projectId:props.projectId }})
 }
 
 </script>

@@ -8,7 +8,6 @@ export function pv() {
     () => {
       let stayTime = Date.now() - startTime;
       tracker.send({
-        kind: "business",
         type: "stayTime",
         stayTime,
       });
@@ -19,7 +18,6 @@ export function pv() {
   var connection = navigator.connection;
   // console.log('connection',connection)
   tracker.send({
-    kind: "business",
     type: "pv",
     source:document.referrer||"",
     effectiveType: connection.effectiveType, //网络环境

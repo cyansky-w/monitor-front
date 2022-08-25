@@ -62,7 +62,6 @@ export function blankScreen() {
       );
       console.log("emptyPoints++++++++++++++", getSelector(centerElements[0]));
       tracker.send({
-        kind: "stability",
         type: "blank",
         emptyPoints: emptyPoints + "",
         screen: window.screen.width + "X" + window.screen.height,
