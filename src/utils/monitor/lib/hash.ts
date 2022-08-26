@@ -1,5 +1,5 @@
 import tracker from "../utils/tracker";
-export function hash(hash:boolean){
+export function hash(hash:boolean|undefined,history:boolean|undefined){
     if(hash){
         window.addEventListener('hashchange',(e)=>{
             setTimeout(() => {
@@ -11,7 +11,8 @@ export function hash(hash:boolean){
             }, 100);
             
           }, false);
-    }else{
+    }
+    if(history){
         window.addEventListener('popstate',(e)=>{ 
             tracker.send({
               type: "popstate",

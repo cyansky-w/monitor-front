@@ -9,18 +9,51 @@ import {proxyFetch} from './lib/proxyFetch'
 import {resource} from './lib/resource'
 import tracker from './utils/tracker'
 
-
-export function useMonitor(pid:string){
-    tracker.setPid(pid);
-    // injectJsError();
-    // proxyXHR();
-    // proxyFetch();
-    // injectFetch();
-    // blankScreen();
-    // timing();
-    // hash(false);
-    // pv();
-    // longTask();
-    // resource();
+type configType={
+    firstScreen?:boolean,
+    resource?:boolean,
+    api?:boolean,
+    blank?:boolean,
+    hash?:boolean,
+    history?:boolean
+    pid:string,
+    production:'dev'|'sit'|'stag'|'prod'
 }
-// useMonitor();
+
+class Monitor{
+    
+    config:configType={
+        pid:'',
+        production:'dev'
+    }
+
+    constructor(){}
+
+    setconfig(config:configType){
+        this.config=Object.assign(this.config,config)
+    }
+
+    useMonitor(){
+        tracker.setPid(this.config.pid);
+        tracker.setProduction(this.config.production);
+        if(this.config.api){
+            proxyXHR();
+            proxyFetch();
+        }
+        if(this.config.blank){
+            blankScreen();
+        }
+        if(this.config.resource){
+            resource();
+        }
+        injectJsError();
+        if(this.config.firstScreen){
+            timing();
+        }
+        hash(this.config.hash,this.config.history);
+        pv();
+        longTask();
+    }
+}
+
+export default new Monitor();

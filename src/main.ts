@@ -16,8 +16,18 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // import ApiService from '@/service/api.service.js';
 
 
-import {useMonitor} from '@/utils/monitor/index.js'
-useMonitor('afwafafsaerfsdfghtrrydr');
+import monitor from '@/utils/monitor/index.js'
+monitor.setconfig({
+   firstScreen:true,
+   resource:true,
+   api:true,
+   blank:true,
+   hash:true,
+   history:true,
+   pid:'awdafgawdfagrtdhgdrtg',
+   production:'dev'
+});
+monitor.useMonitor();
 
 const app=createApp(App);
  app.use(router)

@@ -19,7 +19,8 @@ function getExtraData(this: any) {
     timestamp: Date.now(),
     // userAgent: userAgent.parse(navigator.userAgent).name,
     browser:getBrowser(),
-    OS:getOS()
+    OS:getOS(),
+    production:this.production,
   };
 }
 
@@ -30,6 +31,8 @@ class SendTracker {
     // this.url = `http://${project}.${host}/logstores/${logstore}/track`;
   url:string=`/upload`;
   xhr = new XMLHttpRequest();
+  production = "";
+
   constructor() {
     // 上报的路径
     //获取本地用户标识
@@ -45,6 +48,10 @@ class SendTracker {
 
   setPid(pid:string){
     this.pid=pid;
+  }
+
+  setProduction(production : string){
+    this.production=production;
   }
 
   send(data = {}) {

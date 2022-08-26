@@ -55,13 +55,12 @@ export function timing() {
         requestStart,
         responseStart,
         responseEnd,
-        domLoading,
         domInteractive,
         domContentLoadedEventStart,
         domContentLoadedEventEnd,
         loadEventStart,
-      } = this.window.performance.getEntriesByType('navigation');
-      const orignTime=this.window.performance.orignTime;
+      } = this.window.performance.getEntriesByType('navigation')[0];
+      console.log(this.window.performance.getEntriesByType('navigation'))
       // 发送时间指标
       tracker.send({
         type: "timing", // 统计每个阶段的时间
@@ -69,7 +68,7 @@ export function timing() {
         connectTime: connectEnd - connectStart, // TCP连接耗时
         ttfbTime: responseStart - requestStart, // 首字节到达时间
         responseTime: responseEnd - responseStart, // response响应耗时
-        parseDOMTime: loadEventStart - domLoading, // DOM解析渲染的时间
+        parseDOMTime: loadEventStart - domInteractive, // DOM解析渲染的时间
         domContentLoadedTime:
           domContentLoadedEventEnd - domContentLoadedEventStart, // DOMContentLoaded事件回调耗时
         timeToInteractive: domInteractive - fetchStart, // 首次可交互时间
