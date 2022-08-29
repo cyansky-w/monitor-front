@@ -47,7 +47,7 @@ const routes = [
       children:[
         {
           path:"/index",
-          name:"IndexView",
+          name:"index",
           component:IndexView
         },
       ]

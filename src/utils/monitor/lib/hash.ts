@@ -3,7 +3,12 @@ export function hash(hash:boolean|undefined,history:boolean|undefined){
     if(hash){
         window.addEventListener('hashchange',(e)=>{
             setTimeout(() => {
-                tracker.send({
+                // tracker.send({
+                //     type: "popstate",
+                //     newURL: e.newURL,
+                //     oldURL:e.oldURL
+                //   });
+                  tracker.gifSend({
                     type: "popstate",
                     newURL: e.newURL,
                     oldURL:e.oldURL
@@ -14,7 +19,13 @@ export function hash(hash:boolean|undefined,history:boolean|undefined){
     }
     if(history){
         window.addEventListener('popstate',(e)=>{ 
-            tracker.send({
+            // tracker.send({
+            //   type: "popstate",
+            //   current: e.state.current,
+            //   back:e.state.back,
+            //   forward:e.state.forward
+            // });
+            tracker.gifSend({
               type: "popstate",
               current: e.state.current,
               back:e.state.back,

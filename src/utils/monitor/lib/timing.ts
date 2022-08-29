@@ -29,7 +29,16 @@ export function timing() {
       let inputDelay = firstInput.processingStart - firstInput.startTime;
       let duration = firstInput.duration; // 处理的耗时
       if (inputDelay > 0 || duration > 0) {
-        tracker.send({
+        // tracker.send({
+        //   type: "firstInputDelay", // 首次输入延迟
+        //   inputDelay: inputDelay ? inputDelay: 0, // 延迟的时间
+        //   duration: duration ? duration: 0,
+        //   startTime: firstInput.startTime+window.performance.timeOrigin, // 开始处理的时间
+        //   selector: lastEvent
+        //     ? getSelector(lastEvent.path || lastEvent.target)
+        //     : "",
+        // });
+        tracker.gifSend({
           type: "firstInputDelay", // 首次输入延迟
           inputDelay: inputDelay ? inputDelay: 0, // 延迟的时间
           duration: duration ? duration: 0,
@@ -62,7 +71,19 @@ export function timing() {
       } = this.window.performance.getEntriesByType('navigation')[0];
       console.log(this.window.performance.getEntriesByType('navigation'))
       // 发送时间指标
-      tracker.send({
+      // tracker.send({
+      //   type: "timing", // 统计每个阶段的时间
+      //   parseDNSTime:domainLookupEnd - domainLookupStart,//dns解析耗时
+      //   connectTime: connectEnd - connectStart, // TCP连接耗时
+      //   ttfbTime: responseStart - requestStart, // 首字节到达时间
+      //   responseTime: responseEnd - responseStart, // response响应耗时
+      //   parseDOMTime: loadEventStart - domInteractive, // DOM解析渲染的时间
+      //   domContentLoadedTime:
+      //     domContentLoadedEventEnd - domContentLoadedEventStart, // DOMContentLoaded事件回调耗时
+      //   timeToInteractive: domInteractive - fetchStart, // 首次可交互时间
+      //   loadTime: loadEventStart - fetchStart, // 完整的加载时间
+      // });
+      tracker.gifSend({
         type: "timing", // 统计每个阶段的时间
         parseDNSTime:domainLookupEnd - domainLookupStart,//dns解析耗时
         connectTime: connectEnd - connectStart, // TCP连接耗时
@@ -81,7 +102,16 @@ export function timing() {
       console.log("FCP", FCP);
       console.log("FMP", FMP);
       console.log("LCP", LCP);
-      tracker.send({
+      // tracker.send({
+      //   type: "paint",
+      //   firstPaint: FP ? FP.startTime : 0,
+      //   firstContentPaint: FCP ? FCP.startTime : 0,
+      //   firstMeaningfulPaint: FMP ? FMP.startTime : 0,
+      //   largestContentfulPaint: LCP
+      //     ? LCP.renderTime || LCP.loadTime
+      //     : 0,
+      // });
+      tracker.gifSend({
         type: "paint",
         firstPaint: FP ? FP.startTime : 0,
         firstContentPaint: FCP ? FCP.startTime : 0,

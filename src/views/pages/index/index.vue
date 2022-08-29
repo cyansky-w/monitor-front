@@ -22,7 +22,7 @@
     </div>
     <div class="row gx-2">
       <div class="col-4 pb-2" v-for="item in 10" :key="item">
-        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf"></IndexCard>
+        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option"></IndexCard>
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 import IndexCard from "@/components/IndexCard/IndexCard.vue"
 import { reactive, ref } from "vue";
+import {option} from './optionIndex.js'
 
 let userInfo=reactive([{
   name:"位活跃用户",

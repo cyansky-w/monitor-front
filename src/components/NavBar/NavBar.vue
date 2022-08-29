@@ -11,7 +11,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link"  href="#">首页</a>
+                        <router-link class="nav-link"  :to="{name: 'index'}">首页</router-link>
                     </li>
 
                     <li class="nav-item dropdown">

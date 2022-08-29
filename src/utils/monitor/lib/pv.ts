@@ -7,7 +7,11 @@ export function pv() {
     "beforeunload",
     () => {
       let stayTime = Date.now() - startTime;
-      tracker.send({
+      // tracker.send({
+      //   type: "stayTime",
+      //   stayTime,
+      // });
+      tracker.gifSend({
         type: "stayTime",
         stayTime,
       });
@@ -17,7 +21,14 @@ export function pv() {
   
   var connection = navigator.connection;
   // console.log('connection',connection)
-  tracker.send({
+  // tracker.send({
+  //   type: "pv",
+  //   source:document.referrer||"",
+  //   effectiveType: connection.effectiveType, //网络环境
+  //   rtt: connection.rtt, //往返时间
+  //   screen: `${window.screen.width}x${window.screen.height}`, //设备分辨率
+  // });
+  tracker.gifSend({
     type: "pv",
     source:document.referrer||"",
     effectiveType: connection.effectiveType, //网络环境

@@ -38,14 +38,21 @@ export function resource() {
     "error",
     (event) => {
       console.log("error+++++++++++", event);
-      if (event.target && (event.target.src || event.target.href)) {
+      if (event.target &&(event.target.src || event.target.href)&&(event.target.src || event.target.href).indexOf('/upload')===-1) {
         console.log('flag',ASSETS_TYPE.indexOf(event.target.tagName.toLowerCase()) !== -1)
         if (errorImgProxy.indexOf(event.target.src || event.target.href) === -1 && ASSETS_TYPE.indexOf(event.target.tagName.toLowerCase()) !== -1) {
           errorImgProxy.push(event.target.src || event.target.href);
           console.log(errorImgProxy);
 
         }
-        tracker.send({
+        // tracker.send({
+        //   type: "resourceError", // 资源获取错误
+        //   filename: event.target.src || event.target.href, // 哪个文件报错了
+        //   tagName: event.target.tagName,
+        //   triggerTimeStamp: event.timeStamp, //时间
+        //   selector: getSelector(event.target), // 代表最后一个操作的元素
+        // });
+        tracker.gifSend({
           type: "resourceError", // 资源获取错误
           filename: event.target.src || event.target.href, // 哪个文件报错了
           tagName: event.target.tagName,
@@ -61,18 +68,29 @@ export function resource() {
         setTimeout(()=>{
             for(let item of list.getEntries()){
                 const {initiatorType, name} = item;
-                if(errorImgProxy.indexOf(name)===-1&&ASSETS_TYPE.indexOf(initiatorType) !== -1){
+                if(errorImgProxy.indexOf(name)===-1&&ASSETS_TYPE.indexOf(initiatorType) !== -1&&name.indexOf('/upload')===-1){
+                console.log('name',name)
                     const {connectStart, domainLookupStart, domainLookupEnd, connectEnd, duration, encodedBodySize, requestStart, responseEnd, responseStart} = item;
-                    tracker.send({
-                    type: "resource",
-                    name,
-                    parseDNSTime:domainLookupStart-domainLookupEnd,
-                    connectTime:connectStart-connectEnd,
-                    duration,
-                    encodedBodySize,
-                    ttfbTime: responseStart - requestStart, // 首字节到达时间
-                    responseTime: responseEnd - responseStart, // response响应耗时
-                    });
+                    // tracker.send({
+                    // type: "resource",
+                    // name,
+                    // parseDNSTime:domainLookupStart-domainLookupEnd,
+                    // connectTime:connectStart-connectEnd,
+                    // duration,
+                    // encodedBodySize,
+                    // ttfbTime: responseStart - requestStart, // 首字节到达时间
+                    // responseTime: responseEnd - responseStart, // response响应耗时
+                    // });
+                    tracker.gifSend({
+                      type: "resource",
+                      name,
+                      parseDNSTime:domainLookupStart-domainLookupEnd,
+                      connectTime:connectStart-connectEnd,
+                      duration,
+                      encodedBodySize,
+                      ttfbTime: responseStart - requestStart, // 首字节到达时间
+                      responseTime: responseEnd - responseStart, // response响应耗时
+                      });
                 }
             }
         },100)

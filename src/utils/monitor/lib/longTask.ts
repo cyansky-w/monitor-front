@@ -8,7 +8,16 @@ export function longTask() {
       if (entry.duration > 100) {
         let lastEvent = getLastEvent();
         requestIdleCallback(() => {
-          tracker.send({
+          // tracker.send({
+          //   type: "longTask",
+          //   eventType: lastEvent ? lastEvent.type|| '' : '',
+          //   startTime: entry.startTime+window.performance.timeOrigin, // 开始时间
+          //   duration: entry.duration, // 持续时间
+          //   selector: lastEvent
+          //     ? getSelector(lastEvent.path || lastEvent.target)
+          //     : "",
+          // });
+          tracker.gifSend({
             type: "longTask",
             eventType: lastEvent ? lastEvent.type|| '' : '',
             startTime: entry.startTime+window.performance.timeOrigin, // 开始时间

@@ -21,8 +21,9 @@
         </div>
         <div class="mb-2">
           <h4 class="fs-m fw-bold">活跃趋势</h4>
-          <div style="height:100px" class="bg-dark"></div>
-          <!-- <HelloChart></HelloChart> -->
+          <div style="height:100px">
+            <MCharts :option="props.option"></MCharts>
+          </div>
         </div>
         <div>
           <h4 class="fs-m fw-bold">健康总分</h4>
@@ -48,6 +49,8 @@
 
 <script setup>
 import ScoreCircle from "@/components/ScoreCircle/ScoreCircle.vue"
+import MCharts from "@/components/MCharts/MCharts.vue";
+
 import { onMounted } from "@vue/runtime-core"
 import { useRouter } from 'vue-router'
 const props=defineProps({
@@ -57,7 +60,7 @@ const props=defineProps({
   },
   option:{
     type:Object,
-    required:false
+    required:true
   },
   userInfo:{
     type:Array,

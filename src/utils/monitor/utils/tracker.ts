@@ -10,7 +10,7 @@ let logstore = "yymonitor-store";
 
 let pid:string;//项目标识
 //公共字段
-function getExtraData(this: any) {
+function getExtraData(this: any):{[key:string]:string|number} {
   return {
     pid:this.pid,
     uuid:this.uuid,
@@ -52,6 +52,21 @@ class SendTracker {
 
   setProduction(production : string){
     this.production=production;
+  }
+
+  gifSend(data = {}){
+    let extraData = getExtraData.apply(this);
+    let log:{[key:string]:string|number} = { ...data, ...extraData };
+
+    console.log("log", log);
+
+    let logArray:Array<string>=[]
+    for(let key in log){
+      logArray.push(`${key}=${log[key]}`)
+    }
+    let gif=new Image();
+    gif.src=`${this.url}/log.gif?${logArray.join('&')}`
+    // console.log('_gif_log_',`${this.url}/log.gif?${logArray.join('&')}`)
   }
 
   send(data = {}) {

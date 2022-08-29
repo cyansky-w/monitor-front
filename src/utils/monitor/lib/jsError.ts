@@ -5,10 +5,14 @@ import tracker from "../utils/tracker";
 export function injectJsError() {
 
   var oldError = console.error;
-    console.error = new Proxy(console.error,{
-      apply:function (target,thisArg,...argumentList) {
-      console.log('error+++++++++++',argumentList)
-      tracker.send({
+  console.error = new Proxy(console.error, {
+    apply: function (target, thisArg, ...argumentList) {
+      console.log('error+++++++++++', argumentList)
+      // tracker.send({
+      //   type: "customError", // 资源获取错误
+      //   message: argumentList[0], // 报错信息
+      // });
+      tracker.gifSend({
         type: "customError", // 资源获取错误
         message: argumentList[0], // 报错信息
       });
@@ -17,14 +21,22 @@ export function injectJsError() {
       return target.apply(thisArg, argumentList);
     }
   }
-    )
+  )
 
   // 监听js错误
-  window.onerror = function(...argumentList) {
+  window.onerror = function (...argumentList) {
     let [message, filename, row, col, error] = argumentList;
     let lastEvent = getLastEvent(); // 获取到最后一个交互事件
-    console.log('jserror',lastEvent)
-    tracker.send({
+    console.log('jserror', lastEvent)
+    // tracker.send({
+    //   type: "jsError", // js执行错误
+    //   message, // 报错信息
+    //   filename, // 哪个文件报错了
+    //   position: `${row}:${col}`, // 报错的行列位置
+    //   stack: getLines(error?.stack),
+    //   selector: lastEvent ? getSelector(lastEvent.path) : "", // 代表最后一个操作的元素
+    // });
+    tracker.gifSend({
       type: "jsError", // js执行错误
       message, // 报错信息
       filename, // 哪个文件报错了
@@ -34,52 +46,61 @@ export function injectJsError() {
     });
   }
 
-    window.addEventListener(
-      "unhandledrejection",
-      (event) => {
-        console.log("unhandledrejection-------- ", event);
-        let lastEvent = getLastEvent(); // 获取到最后一个交互事件
-        let message;
-        let filename;
-        let line = 0;
-        let column = 0;
-        let stack = "";
-        let reason = event.reason;
+  window.addEventListener(
+    "unhandledrejection",
+    (event) => {
+      console.log("unhandledrejection-------- ", event);
+      let lastEvent = getLastEvent(); // 获取到最后一个交互事件
+      let message;
+      let filename;
+      let line = 0;
+      let column = 0;
+      let stack = "";
+      let reason = event.reason;
+      console.log('reason', reason)
+      if (typeof reason === "string") {
+        message = reason;
+      } else if (typeof reason === "object") {
         console.log('reason',reason)
-        if (typeof reason === "string") {
-          message = reason;
-        } else if (typeof reason === "object") {
-          message = reason.message;
-          if (reason.stack) {
-            let matchResult = reason.stack.match(/at\s+(.+):(\d+):(\d+)/);
-            filename = matchResult[1];
-            line = matchResult[2];
-            column = matchResult[3];
-          }
-          stack = getLines(reason.stack);
+        message = reason.message;
+        if (reason.stack) {
+          let matchResult = reason.stack.match(/at\s+(.+):(\d+):(\d+)/);
+          filename = matchResult[1];
+          line = matchResult[2];
+          column = matchResult[3];
         }
-        tracker.send({
-          type: "promiseError", // promise错误
-          message, // 报错信息
-          filename, // 哪个文件报错了
-          position: `${line}:${column}`, // 报错的行列位置
-          stack,
-          selector: lastEvent ? getSelector(lastEvent.path) : "", // 代表最后一个操作的元素
-        });
-      },
-      true
-    );
+        stack = getLines(reason.stack);
+      }
+      // tracker.send({
+      //   type: "promiseError", // promise错误
+      //   message, // 报错信息
+      //   filename, // 哪个文件报错了
+      //   position: `${line}:${column}`, // 报错的行列位置
+      //   stack,
+      //   selector: lastEvent ? getSelector(lastEvent.path) : "", // 代表最后一个操作的元素
+      // });
+      tracker.gifSend({
+        type: "promiseError", // promise错误
+        message, // 报错信息
+        filename, // 哪个文件报错了
+        position: `${line}:${column}`, // 报错的行列位置
+        stack,
+        selector: lastEvent ? getSelector(lastEvent.path) : "", // 代表最后一个操作的元素
+      });
+    },
+    true
+  );
 }
 
 function getLines(stack?: string) {
-  console.log('stack',stack);
-  if(stack){
+  console.log('stack', stack);
+  if (stack) {
     return stack
-    .split("\n")
-    .slice(1)
-    .map((item) => item.replace(/^\s+at\s+/g, ""))
-    .join("^");
-  }else{
+      .split("\n")
+      .slice(1)
+      .map((item) => item.replace(/^\s+at\s+/g, ""))
+      .join("^");
+  } else {
     return '';
   }
 }

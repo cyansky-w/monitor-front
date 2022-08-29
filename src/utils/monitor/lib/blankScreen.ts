@@ -61,7 +61,14 @@ export function blankScreen() {
         window.innerHeight / 2
       );
       console.log("emptyPoints++++++++++++++", getSelector(centerElements[0]));
-      tracker.send({
+      // tracker.send({
+      //   type: "blank",
+      //   emptyPoints: emptyPoints + "",
+      //   screen: window.screen.width + "X" + window.screen.height,
+      //   viewPoint: window.innerWidth + "X" + window.innerHeight,
+      //   selector: getSelector(centerElements[0]),
+      // });
+      tracker.gifSend({
         type: "blank",
         emptyPoints: emptyPoints + "",
         screen: window.screen.width + "X" + window.screen.height,
