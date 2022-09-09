@@ -47,7 +47,7 @@ export function blankScreen() {
       yXElements = document.elementsFromPoint(
         (window.innerWidth * (9-i)) / 10,
         (window.innerHeight * i) / 10
-      );//获取屏幕中间y轴方向上的点
+      );//获取屏幕中间y=x轴方向上的点
       isWrapper(xElements[0]);
       isWrapper(yElements[0]);
       isWrapper(yNavXElements[0]);

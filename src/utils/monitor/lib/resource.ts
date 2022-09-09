@@ -31,7 +31,6 @@ function observeStatic() {
 
 export function resource() {
     observeStatic();
-    let resourceList=[]
     
   // 监听全局未捕获的错误
   window.addEventListener(
@@ -94,7 +93,7 @@ export function resource() {
                 }
             }
         },100)
-        
+
     })
     obs.observe({entryTypes:['resource']});
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <span class="dropdown-title align-middle">{{props.name}}</span>
+        <span class="dropdown-title align-middle" v-if="showName">{{props.name}}</span>
         <button class="btn btn-select dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{itemChecked.name}}
@@ -23,6 +23,10 @@ let props=defineProps({
     menuList:{
         type:Array,
         default:[{name:'标签1',value:0},{name:'标签2',value:1},{name:'标签3',value:2}]
+    },
+    showName:{
+        type:Boolean,
+        default:true
     }
 })
 

@@ -2,8 +2,9 @@
   <div id="container">
     <div id="content">
       <input id="errorBtn" type="button" value="点击报错" @click="errorClick()" />
-      <input id="promiseErrorBtn" type="button" value="点击抛出Promise报错" @click="promiseErrorClick()" />
-      <input id="promiseErrorBtn" type="button" value="点击抛出延迟处理Promise报错" @click="latePromiseErrorClick()" />
+      <input id="promiseErrorBtn1" type="button" value="点击抛出Promise报错" @click="promiseErrorClick()" />
+      <input id="promiseErrorBtn2" type="button" value="点击抛出延迟处理Promise报错" @click="latePromiseErrorClick()" />
+      <input id="resourceErrorBtn" type="button" value="点击抛出静态资源请求错误" @click="resourceErrorClick()" />
     </div>
 
     <div class="outer">
@@ -41,6 +42,11 @@ function latePromiseErrorClick(): void {
   setTimeout(() => {
     r.catch(e => { });
   }, 1000);
+}
+
+function resourceErrorClick(): void {
+  let img=new Image();
+  img.src='http://localhost:8080/img'
 }
 </script>
 

@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-end align-items-center">
           <MDropDown></MDropDown>
           <MDropDown></MDropDown>
-          <MDropDown name="下拉3" @select="tapselect"></MDropDown>
+          <MDropDown name="下拉3" @select="tapselect" :show-name="false"></MDropDown>
           <div class="input-group flex-nowrap w-auto">
             <input type="text" class="form-control " placeholder="Username" aria-label="Username"
               aria-describedby="addon-wrapping">
