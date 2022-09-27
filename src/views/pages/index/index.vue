@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-between my-3 fs-6 head-filter">
       <div class="col-4">
-        <button type="button" class="btn btn-primary px-3 py-1">+ Primary</button>
+        <button type="button" class="btn btn-primary px-3 py-1" ref="glitch">+ Primary</button>
       </div>
       <div class="col-8 ">
         <div class="d-flex justify-content-end align-items-center">
@@ -22,7 +22,7 @@
     </div>
     <div class="row gx-2">
       <div class="col-4 pb-2" v-for="item in 10" :key="item">
-        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option"></IndexCard>
+        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option" :glitch="10*item<60"></IndexCard>
       </div>
     </div>
   </div>
@@ -31,8 +31,9 @@
 <script lang="ts" setup>
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 import IndexCard from "@/components/IndexCard/IndexCard.vue"
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import {option} from './optionIndex.js'
+import Glitch from '@/utils/tools/glitch.ts'
 
 let userInfo=reactive([{
   name:"位活跃用户",
@@ -74,6 +75,12 @@ function changeToList() {
 function tapselect(e:{name:string,value:string|number}){
   console.log(e)
 }
+let glitch=ref(null);
+onMounted(()=>{
+  Glitch.init(glitch.value);
+  
+})
+
 </script>
 
 <style scoped lang="scss">

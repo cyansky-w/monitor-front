@@ -1,12 +1,13 @@
 import {getBrowser,getOS} from "./userAgent";
 import {getUuid} from "../utils/UUID";
 
-// 主机
-let host = "cn-guangdong-log.aliyuncs.com";
-// 项目名
-let project = "yymonitor";
-// 存储名
-let logstore = "yymonitor-store";
+
+// 域名
+let host = "81.68.222.187";
+// 端口
+let prot = "8888";
+// gif名
+export let gifName = "dig.gif";
 
 let pid:string;//项目标识
 //公共字段
@@ -36,6 +37,7 @@ class SendTracker {
   constructor() {
     // 上报的路径
     //获取本地用户标识
+    this.url = `http://${host}:${prot}/${gifName}`;
     if(window.localStorage){
       if(window.localStorage.getItem('m-uuid')!==null){
         this.uuid=window.localStorage.getItem('m-uuid')
@@ -65,8 +67,8 @@ class SendTracker {
       logArray.push(`${key}=${log[key]}`)
     }
     let gif=new Image();
-    gif.src=`${this.url}/log.gif?${logArray.join('&')}`
-    // console.log('_gif_log_',`${this.url}/log.gif?${logArray.join('&')}`)
+    gif.src=`${this.url}?${logArray.join('&')}`;
+    console.log('_gif_log_',gif.src);
   }
 
   send(data = {}) {
@@ -90,4 +92,4 @@ class SendTracker {
   }
 }
 
-export default new SendTracker();
+export let tracker= new SendTracker();

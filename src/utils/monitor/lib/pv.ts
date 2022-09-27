@@ -1,4 +1,4 @@
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 
 export function pv() {
   let startTime = Date.now();

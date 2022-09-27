@@ -1,10 +1,11 @@
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 
 export function proxyXHR() {
   //代理xhr.open方法
   let oldOpen=XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open=new Proxy(oldOpen,{ 
     apply:function(target,thisArg,argumentsList:[method: string, url: string | URL, async: boolean, username?: string | null | undefined, password?: string | null | undefined]){
+      
       if(typeof argumentsList[1]!=='string'){
         argumentsList[1]=argumentsList[1].toString();
       }

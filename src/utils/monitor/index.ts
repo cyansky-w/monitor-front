@@ -7,7 +7,7 @@ import { pv } from "./lib/pv";
 import {hash} from './lib/hash'
 import {proxyFetch} from './lib/proxyFetch'
 import {resource} from './lib/resource'
-import tracker from './utils/tracker'
+import {gifName,tracker} from './utils/tracker'
 
 type configType={
     firstScreen?:boolean,
@@ -44,7 +44,7 @@ class Monitor{
             blankScreen();
         }
         if(this.config.resource){
-            resource();
+            resource(gifName);
         }
         injectJsError();
         if(this.config.firstScreen){

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 
 export function vueError() {
     if (Vue) {

@@ -13,6 +13,9 @@
 // import { defineComponent, defineAsyncComponent} from "vue";
 import { useRoute, useRouter } from 'vue-router';
 import 'bootstrap/dist/css/bootstrap.css';
+import '@/assets/css/public.css';
+import '@/assets/css/shake.css';
+
 import 'bootstrap/dist/js/bootstrap';
 import NavBar from './components/NavBar/NavBar.vue';
 

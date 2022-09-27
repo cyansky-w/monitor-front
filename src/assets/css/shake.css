@@ -1,0 +1,123 @@
+
+.glitch{
+    cursor: pointer;
+    position: relative;
+    color: #00ccff;
+    z-index: 999;
+}
+
+.glitch-clone{
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    text-shadow: -5px -2px 0 rgb(0, 187, 255),  5px 2px 0 rgb(0, 255, 145);
+    visibility: hidden;
+    animation: glimmer 4s linear 0s infinite ;
+    -webkit-animation: glimmer 4s linear 0s infinite ;
+    animation-timing-function: steps(1, end);
+}
+
+.glitch:hover .glitch-clone{
+    animation: san 1s;
+    animation-timing-function: steps(1, end);
+    -webkit-animation: san 1s;
+}
+
+  @keyframes san {
+    0% {
+      clip-path: inset(20% -5px 60% 0);
+      transform: translate(-6px, 5px);
+      visibility: visible;
+    }
+
+    10% {
+      clip-path: inset(50% -5px 30% 0);
+      transform: translate(6px, -5px);
+    }
+
+    20% {
+      clip-path: inset(20% -5px 60% 0);
+      transform: translate(5px, 0px);
+    }
+
+    30% {
+      clip-path: inset(80% -5px 5% 0);
+      transform: translate(-8px, 5px);
+    }
+
+    40% {
+      clip-path: inset(0 -5px 80% 0);
+      transform: translate(-4px, -3px);
+    }
+
+    50% {
+      clip-path: inset(50% -5px 30% 0);
+      transform: translate(-6px, -5px);
+    }
+
+    60% {
+      clip-path: inset(80% -5px 5% 0);
+      transform: translate(-7px, 5px);
+    }
+
+    70% {
+      clip-path: inset(0 -5px 80% 0);
+      transform: translate(3px, 6px);
+    }
+
+    80% {
+      clip-path: inset(50% -5px 30% 0);
+      transform: translate(5px, 5px);
+    }
+
+    90% {
+      clip-path: inset(20% -5px 60% 0);
+      transform: translate(6px, -5px);
+    }
+
+    100% {
+      clip-path: inset(0 -5px 80% 0);
+      transform: translate(1px, 5px);
+    }
+  }
+
+  @keyframes glimmer{
+    0%{
+        visibility: hidden;
+        opacity: 0;
+    }
+    82%{
+        visibility: visible;
+        opacity: .25;
+    }
+    84%{
+        opacity: .15;
+    }
+    85%{
+        opacity: 1;
+    }
+    86%{
+        opacity: .65;
+    }
+    90%{
+        opacity: 0.75;
+    }
+    92%{
+        opacity: 0;
+    }
+    90%{
+        opacity: 0.75;
+    }
+    95%{
+        opacity: 0;
+    }
+    96%{
+        opacity: .15;
+    }
+    98%{
+        opacity: 1;
+    }
+    100%{
+        opacity: .15;
+    }
+  }

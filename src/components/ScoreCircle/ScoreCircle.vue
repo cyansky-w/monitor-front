@@ -1,5 +1,5 @@
 <template>
-    <div class="score-container">
+    <div class="score-container" ref="container">
         <div class="score-box" :class="{'green':props.score>=props.green&&props.score<=100,'warn':props.score<props.green&&props.score>=props.warn,'danger':props.score<props.warn&&props.score>=0,'bg':props.showBg}">
             <div class="circle-base "></div>
             <div class="circle-trans transform"></div>
@@ -8,15 +8,9 @@
     </div>
 </template>
 
-<script>
-// 使用普通的 <script> 来声明选项
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup>
-import { computed } from 'vue';
+import { computed,ref,onMounted } from 'vue';
+import Glitch from '@/utils/tools/glitch.ts'
 
 const props = defineProps({
     score: {
@@ -51,6 +45,15 @@ let angle = computed(()=>{
 
 let borderSize = computed(()=>{
     return props.borderSize;
+})
+
+
+let container=ref(null)
+
+onMounted(()=>{
+    if(props.score<props.warn){
+        Glitch.init(container.value);
+    }
 })
 
 </script>
@@ -97,6 +100,7 @@ $border-size:v-bind(borderSize);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-weight: bold;
 }
 
 .danger {

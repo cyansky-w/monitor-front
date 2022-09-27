@@ -1,4 +1,4 @@
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 export function hash(hash:boolean|undefined,history:boolean|undefined){
     if(hash){
         window.addEventListener('hashchange',(e)=>{

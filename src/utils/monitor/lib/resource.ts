@@ -1,4 +1,4 @@
-import tracker from "../utils/tracker"
+import {tracker} from "../utils/tracker"
 import getSelector from "../utils/getSelector";
 
 
@@ -29,7 +29,7 @@ function observeStatic() {
     });
 }
 
-export function resource() {
+export function resource(ignoreGif:string) {
     observeStatic();
     
   // 监听全局未捕获的错误
@@ -67,7 +67,7 @@ export function resource() {
         setTimeout(()=>{
             for(let item of list.getEntries()){
                 const {initiatorType, name} = item;
-                if(errorImgProxy.indexOf(name)===-1&&ASSETS_TYPE.indexOf(initiatorType) !== -1&&name.indexOf('/upload')===-1){
+                if(errorImgProxy.indexOf(name)===-1&&ASSETS_TYPE.indexOf(initiatorType) !== -1&&name.indexOf(ignoreGif)===-1){
                 console.log('name',name)
                     const {connectStart, domainLookupStart, domainLookupEnd, connectEnd, duration, encodedBodySize, requestStart, responseEnd, responseStart} = item;
                     // tracker.send({

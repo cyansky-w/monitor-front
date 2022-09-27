@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light navigator">
         <div class="container-fluid">
             <img src="/img/a.svg" alt="icon">
-            <a class="navbar-brand title" href="#">2tomatoes前端监控系统</a>
+            <a class="navbar-brand title font-cyberpunk" href="#">CyanSky前端监控系统</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -67,9 +67,9 @@ export default {
 }
 .title{
     margin-left: 5px;
-
+    font-family: Cyberpunk;
     font-weight:800;
-    font-size: 23px;
+    font-size: 20px;
     /* color: white; */
 }
 .nav-link:hover{

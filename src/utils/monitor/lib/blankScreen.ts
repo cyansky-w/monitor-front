@@ -1,4 +1,4 @@
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 import onload from "../utils/onload";
 
 export function blankScreen() {
@@ -23,6 +23,7 @@ export function blankScreen() {
   }
   function isWrapper(element: Element) {
     let selector = getSelector(element);
+    //判断是否是html、body等这些容器，如果是这些容器我们认为这个点为白屏点
     if (wrapperElements.indexOf(selector) !== -1) {
       emptyPoints++;
     }

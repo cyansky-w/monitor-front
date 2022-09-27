@@ -1,6 +1,6 @@
 import getLastEvent from "../utils/getLastEvent";
 import getSelector from "../utils/getSelector";
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 
 export function injectJsError() {
 

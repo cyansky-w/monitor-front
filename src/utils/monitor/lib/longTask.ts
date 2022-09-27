@@ -1,4 +1,4 @@
-import tracker from "../utils/tracker";
+import {tracker} from "../utils/tracker";
 import getLastEvent from "../utils/getLastEvent";
 import getSelector from "../utils/getSelector";
 

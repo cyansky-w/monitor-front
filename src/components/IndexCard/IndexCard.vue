@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="gotoHome">
+  <div class="card " @click="gotoHome" :class="{'danger':props.heathScore<60}">
       <div class="card-body fw-bold">
         {{props.projectName}}
         <span class="float-end">
@@ -8,10 +8,12 @@
           </button>
         </span>
       </div>
-      <div class="card-body">
+      <div class="card-body pt-0">
         <div class="row align-items-end">
           <div class="col-3 text-center user-info-1">
-            <p class="fs-1 m-0 f-active">{{props.activeUser}}</p>
+            <p class="fs-1 m-0 f-active">
+              <ScrollNumber :scrollNum="String(props.activeUser)"></ScrollNumber>
+            </p>
             <p class="fs-s">位活跃用户</p>
           </div>
           <div class="col-3 text-center " v-for="(item,index) in props.userInfo" :key="`userInfo_${index}`">
@@ -50,8 +52,9 @@
 <script setup>
 import ScoreCircle from "@/components/ScoreCircle/ScoreCircle.vue"
 import MCharts from "@/components/MCharts/MCharts.vue";
+import ScrollNumber from "@/components/ScrollNumber/ScrollNumber.vue";
 
-import { onMounted } from "@vue/runtime-core"
+import { onMounted, ref } from "@vue/runtime-core"
 import { useRouter } from 'vue-router'
 const props=defineProps({
   projectId:{
@@ -93,6 +96,8 @@ function gotoSet(){
   router.push({ name: 'settings', params: { projectId:props.projectId }})
 }
 
+
+
 </script>
 
 <style scoped>
@@ -102,7 +107,8 @@ function gotoSet(){
 }
 
 .danger{
-
+  border: 2px solid rgb(254, 105, 117);
+  background:rgba(254, 105, 117,.05) ;
 }
 
 
