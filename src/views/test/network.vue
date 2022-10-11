@@ -34,7 +34,7 @@
 import ApiService from '@/service/api.service.js';
 function sendSuccess() {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/success", true);
+        xhr.open("GET", "/success?a=123", true);
         xhr.responseType = "json";
         xhr.onload = function () {
           console.log(xhr.response);
@@ -43,7 +43,7 @@ function sendSuccess() {
       }
       function sendError() {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/error", true);
+        xhr.open("POST", "/error?a=123", true);
         xhr.responseType = "json";
         xhr.onload = function () {
           console.log(xhr.response);
@@ -54,15 +54,21 @@ function sendSuccess() {
         xhr.send("name=lyy");
       }
       function sendAxios(){
-        ApiService.post('/success',{say:"hello"})
+        ApiService.post('/success?a=123',{say:"hello"})
       }
 
       function sendFetch(){
-        fetch('/success').then(function(response) {
+        fetch('/upload',{
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+          },
+          body: JSON.stringify({say:'hello'}) // 这里是请求对象
+        }).then((response)=>{
           return response.json();
-        }).then(function(data) {
+        }).then((data)=>{
           console.log("data",data);
-        }).catch(function(e) {
+        }).catch((e)=>{
           console.log("Oops, error:",e);
         }); 
       }

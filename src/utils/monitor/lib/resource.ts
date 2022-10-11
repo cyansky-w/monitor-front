@@ -53,7 +53,7 @@ export function resource(ignoreGif:string) {
         // });
         tracker.gifSend({
           type: "resourceError", // 资源获取错误
-          filename: event.target.src || event.target.href, // 哪个文件报错了
+          filename: encodeURIComponent(event.target.src || event.target.href) , // 哪个文件报错了
           tagName: event.target.tagName,
           triggerTimeStamp: event.timeStamp, //时间
           selector: getSelector(event.target), // 代表最后一个操作的元素
@@ -82,7 +82,7 @@ export function resource(ignoreGif:string) {
                     // });
                     tracker.gifSend({
                       type: "resource",
-                      name,
+                      name:encodeURIComponent(name),
                       parseDNSTime:domainLookupStart-domainLookupEnd,
                       connectTime:connectStart-connectEnd,
                       duration,

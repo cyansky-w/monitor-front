@@ -16,7 +16,7 @@ function getExtraData(this: any):{[key:string]:string|number} {
     pid:this.pid,
     uuid:this.uuid,
     title: document.title,
-    url: location.href,
+    url: encodeURIComponent(location.href) ,
     timestamp: Date.now(),
     // userAgent: userAgent.parse(navigator.userAgent).name,
     browser:getBrowser(),
@@ -66,9 +66,9 @@ class SendTracker {
     for(let key in log){
       logArray.push(`${key}=${log[key]}`)
     }
-    let gif=new Image();
-    gif.src=`${this.url}?${logArray.join('&')}`;
-    console.log('_gif_log_',gif.src);
+    // let gif=new Image();
+    // gif.src=`${this.url}?${logArray.join('&')}`;
+    console.log('_gif_log_',`${this.url}?${logArray.join('&')}`);
   }
 
   send(data = {}) {

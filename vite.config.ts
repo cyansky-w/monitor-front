@@ -15,10 +15,6 @@ export default defineConfig({
   server: {
 		port: 8080,
 		proxy: {
-			'/upload': {
-				target: ' http://monitor-api.twotomatoes.org.cn:10086', // 日志服务器  
-				changeOrigin: true
-			},
 			[`${loadEnv('production', process.cwd()).VITE_APP_BASE_API}`]: {
 				target: ' http://monitor-api.twotomatoes.org.cn:10086', // 目标服务  
 				changeOrigin: true
@@ -31,6 +27,10 @@ export default defineConfig({
 				target: ' http://127.0.0.1:3000', // 目标服务  
 				changeOrigin: true
 			},
+			'/upload': {
+				target: 'http://127.0.0.1:3000', // 日志服务器  
+				changeOrigin: true
+			}
 		}
 	}
 })

@@ -23,6 +23,7 @@ export function proxyXHR() {
 let oldSend=XMLHttpRequest.prototype.send
   XMLHttpRequest.prototype.send=new Proxy(oldSend,{
     apply:function(target,thisArg,argumentsList:[body?: Document | XMLHttpRequestBodyInit | null | undefined]){
+      debugger
       if (thisArg.logData.length>0) {
         console.log('thisArg.logData',thisArg.logData);
         let startTime = Date.now();
@@ -40,10 +41,12 @@ let oldSend=XMLHttpRequest.prototype.send
           //   response: thisArg.response ? JSON.stringify(thisArg.response) : "", // 响应体
           //   params: argumentsList[0] || "", // 入参
           // });
+          debugger;
           tracker.gifSend({
             type: "xhr",
             eventType: type,
-            pathname: thisArg.logData.url,
+            method:thisArg.logData[0],
+            pathname: encodeURIComponent(thisArg.logData[1]),
             status: status + "-" + statusText, // 状态码
             duration,
             response: thisArg.response ? JSON.stringify(thisArg.response) : "", // 响应体

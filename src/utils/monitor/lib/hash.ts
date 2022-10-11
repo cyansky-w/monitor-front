@@ -10,8 +10,8 @@ export function hash(hash:boolean|undefined,history:boolean|undefined){
                 //   });
                   tracker.gifSend({
                     type: "popstate",
-                    newURL: e.newURL,
-                    oldURL:e.oldURL
+                    newURL: encodeURIComponent(e.newURL) ,
+                    oldURL:encodeURIComponent(e.oldURL)
                   });
             }, 100);
             
@@ -27,9 +27,9 @@ export function hash(hash:boolean|undefined,history:boolean|undefined){
             // });
             tracker.gifSend({
               type: "popstate",
-              current: e.state.current,
-              back:e.state.back,
-              forward:e.state.forward
+              current: encodeURIComponent(e.state.current),
+              back:encodeURIComponent(e.state.back),
+              forward:encodeURIComponent(e.state.forward)
             });
           }, false);
     }
