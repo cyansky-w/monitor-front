@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light navigator">
         <div class="container-fluid">
             <img src="/img/a.svg" alt="icon">
-            <a class="navbar-brand title font-cyberpunk" href="#">CyanSky前端监控系统</a>
+            <a class="navbar-brand title" href="#">2tomatoes前端监控系统</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,7 +20,9 @@
                             <li>
                                 <router-link class="dropdown-item" :to="{name: 'errorStat'}">错误统计</router-link>
                             </li>
-                            <li><a class="dropdown-item" href="#">Api接口错误统计</a></li>
+                            <li>
+                                <router-link class="dropdown-item" :to="{name: 'errorapi'}">API错误统计</router-link>
+                            </li>
                             <li><a class="dropdown-item" href="#">静态资源错误统计</a></li>
                             </ul>
                     </li>
@@ -67,9 +69,9 @@ export default {
 }
 .title{
     margin-left: 5px;
-    font-family: Cyberpunk;
+
     font-weight:800;
-    font-size: 20px;
+    font-size: 23px;
     /* color: white; */
 }
 .nav-link:hover{

@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-3">
         <div class="col-md-6">
             <div class="card text-black bg-light h-100">
                 <div class="card-body">

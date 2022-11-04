@@ -2,13 +2,13 @@
   <div class="container-fluid">
     <div class="row justify-content-between my-3 fs-6 head-filter">
       <div class="col-4">
-        <button type="button" class="btn btn-primary px-3 py-1" ref="glitch">+ Primary</button>
+        <button type="button" class="btn btn-primary px-3 py-1">+ Primary</button>
       </div>
       <div class="col-8 ">
         <div class="d-flex justify-content-end align-items-center">
           <MDropDown></MDropDown>
           <MDropDown></MDropDown>
-          <MDropDown name="下拉3" @select="tapselect" :show-name="false"></MDropDown>
+          <MDropDown name="下拉3" @select="tapselect"></MDropDown>
           <div class="input-group flex-nowrap w-auto">
             <input type="text" class="form-control " placeholder="Username" aria-label="Username"
               aria-describedby="addon-wrapping">
@@ -22,7 +22,7 @@
     </div>
     <div class="row gx-2">
       <div class="col-4 pb-2" v-for="item in 10" :key="item">
-        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option" :glitch="10*item<60"></IndexCard>
+        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option"></IndexCard>
       </div>
     </div>
   </div>
@@ -31,9 +31,8 @@
 <script lang="ts" setup>
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 import IndexCard from "@/components/IndexCard/IndexCard.vue"
-import { onMounted, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 import {option} from './optionIndex.js'
-import Glitch from '@/utils/tools/glitch.ts'
 
 let userInfo=reactive([{
   name:"位活跃用户",
@@ -75,12 +74,6 @@ function changeToList() {
 function tapselect(e:{name:string,value:string|number}){
   console.log(e)
 }
-let glitch=ref(null);
-onMounted(()=>{
-  Glitch.init(glitch.value);
-  
-})
-
 </script>
 
 <style scoped lang="scss">

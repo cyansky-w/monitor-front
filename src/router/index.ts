@@ -85,37 +85,56 @@ const routes = [
       name: 'ymxnfx',
       component: YmxnfxView
     },  
-
     {
-      path: '/errorStat',
+      path: '/error',
       name: 'errorStat',
       isHide: true, 
-      component: () => import("../views/pages/errorStat/errorStat.vue"),
-      redirect: "/errorStat_total",
+      component: () => import("../views/pages/errorStat/error/index.vue"),
+      redirect: "/error/overview",
       children: [
         {
-          path: "/errorStat_total",
-          name: "errorStat_total",
-          component: () => import("../views/pages/errorStat/errorStat_total.vue"),
-          // redirect: "/error_table",
+          path: "/error/overview",
+          name: "error_overview",
+          component: () => import("../views/pages/errorStat/error/overview.vue"),
         },
         {
-          path: "/errorStat_list",
-          name: "errorStat_list",
-          component: () => import("../views/pages/errorStat/errorStat_list.vue"),
-        },
-        {
-          path: "/errorStat_rele",
-          name: "errorStat_rele",
-          component: () => import("../views/pages/errorStat/errorStat_rele.vue"),
-        },
-        {
-          path: "/errorStat_proc",
-          name: "errorStat_proc",
-          component: () => import("../views/pages/errorStat/errorStat_proc.vue"),
+          path: "/error/list",
+          name: "error_list",
+          component: () => import("../views/pages/errorStat/error/list.vue"),
         },
       ]
     },
+    {
+      path: '/errorapi',
+      name: 'errorapi',
+      isHide: true, 
+      component: () => import("../views/pages/errorStat/error/index.vue"),
+      redirect: "/errorapi/overview",
+      children: [
+        {
+          path: "/errorapi/overview",
+          name: "errorapi_overview",
+          component: () => import("../views/pages/errorStat/api/overview.vue"),
+        },
+        {
+          path: "/errorapi/list",
+          name: "errorapi_list",
+          component: () => import("../views/pages/errorStat/api/list.vue"),
+        },
+      ]
+    },
+    {
+      path: '/manager',
+      name: 'manager',
+      redirect:"/manager/login",
+      children: [
+        {
+          path: "/manager/login",
+          name: "login",
+          component: () => import("../views/pages/manager/login.vue"),
+        },
+      ]
+    },  
   ]
   
   const router = createRouter({

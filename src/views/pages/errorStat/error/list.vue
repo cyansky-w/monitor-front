@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card text-black bg-light h-100">
             <div class="card-body">
-                <p>待处理：全部错误</p>
+                <p>全部错误</p>
                 <el-table :data="tableData" style="width: 100%">
                     <el-table-column prop="error" label="错误">
                     </el-table-column>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'errorStat_proc',
+    name: 'errorStat_list',
     data() {
         return {
             tableData: [
