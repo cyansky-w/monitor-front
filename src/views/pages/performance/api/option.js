@@ -1,5 +1,11 @@
 
 export const option1 = {
+  grid: {
+    left: '0',
+    right: '0',
+    bottom: '0',
+    top: '0',
+  },
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -16,6 +22,12 @@ export const option1 = {
 };
 
 export const option2 = {
+  grid: {
+    left: '0',
+    right: '0',
+    bottom: '0',
+    top: '0',
+  },
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

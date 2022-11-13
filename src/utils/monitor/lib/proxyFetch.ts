@@ -34,7 +34,6 @@ export function proxyFetch(){
                 return target.apply(thisArg, argumentsList).then((response)=>{
                         responseCopy=response.clone();
                         console.log('fetchResponse',responseCopy)
-                        debugger
                         return response.json()
                 }).then((res)=>{
                     debugger

@@ -66,8 +66,8 @@ class SendTracker {
     for(let key in log){
       logArray.push(`${key}=${log[key]}`)
     }
-    // let gif=new Image();
-    // gif.src=`${this.url}?${logArray.join('&')}`;
+    let gif=new Image();
+    gif.src=`${this.url}?${logArray.join('&')}`;
     console.log('_gif_log_',`${this.url}?${logArray.join('&')}`);
   }
 

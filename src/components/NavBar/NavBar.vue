@@ -13,6 +13,13 @@
                     <li class="nav-item">
                         <router-link class="nav-link"  :to="{name: 'index'}">首页</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link"  :to="{name: 'home'}">概览</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link"  :to="{name: 'user'}">用户</router-link>
+                    </li>
+                    
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">错误</a>
@@ -21,9 +28,11 @@
                                 <router-link class="dropdown-item" :to="{name: 'errorStat'}">错误统计</router-link>
                             </li>
                             <li>
-                                <router-link class="dropdown-item" :to="{name: 'errorapi'}">API错误统计</router-link>
+                                <router-link class="dropdown-item" :to="{name: 'errorApi'}">API错误统计</router-link>
                             </li>
-                            <li><a class="dropdown-item" href="#">静态资源错误统计</a></li>
+                            <li>
+                                <router-link class="dropdown-item" :to="{name: 'errorResource'}">静态资源错误统计</router-link>
+                            </li>
                             </ul>
                     </li>
 
@@ -31,9 +40,9 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">性能</a>
                             <ul class="dropdown-menu">
                             <li>
-                                <router-link class="dropdown-item" :to="{name: 'jkhsfx'}">接口耗时分析</router-link>
+                                <router-link class="dropdown-item" :to="{name: 'apiPerformance'}">接口耗时分析</router-link>
                             </li>
-                            <li><router-link class="dropdown-item" :to="{name: 'ymxnfx'}">页面性能分析</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{name: 'pagePerformance'}">页面性能分析</router-link></li>
                             </ul>
                     </li>
 

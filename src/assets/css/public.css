@@ -6,3 +6,11 @@
 .font-cyberpunk{
     font-family: Cyberpunk;
 }
+
+.el-table .el-table__fixed-header-wrapper th, .el-table .el-table__header-wrapper th {
+    word-break: break-word;
+    background-color: #f8f8f9 !important;
+    color: #515a6e;
+    height: 40px;
+    font-size: 13px;
+}

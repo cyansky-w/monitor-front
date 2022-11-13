@@ -15,12 +15,12 @@
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <router-link class="nav-link "
-                                            :class="{ 'active': route.name === 'error_overview' }"
-                                            :to="{name: 'error_overview'}" @click="getRoute">概览</router-link>
+                                            :class="{ 'active': route.name === 'errorApi_overview' }"
+                                            :to="{name: 'errorApi_overview'}" @click="getRoute">概览</router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <router-link class="nav-link" :class="{ 'active': route.name === 'error_list' }"
-                                            :to="{ name: 'error_list' }" @click="getRoute">错误列表</router-link>
+                                        <router-link class="nav-link" :class="{ 'active': route.name === 'errorApi_list' }"
+                                            :to="{ name: 'errorApi_list' }" @click="getRoute">错误列表</router-link>
                                     </li>
                                 </ul>
                             </div>

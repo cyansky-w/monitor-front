@@ -11,9 +11,8 @@ import 'element-plus/dist/index.css'
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-// createApp(App).use(router).use(ElementPlus).mount('#app')
-// //网络请求api
-// import ApiService from '@/service/api.service.js';
+//网络请求api
+import ApiService from '@/service/api.service.js';
 
 
 import monitor from '@/utils/monitor/index.js'

@@ -11,18 +11,22 @@
                     <el-table-column prop="people" label="影响人数" width="180">
                     </el-table-column>
                 </el-table>
-                <!-- <el-element index="/error_table"></el-element> -->
+                <Pagination
+                v-show="total>0"
+                :total="total"
+                :page="queryParams.pageNum"
+                :limit="queryParams.pageSize"
+                @pagination="getList"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    name: 'errorStat_list',
-    data() {
-        return {
-            tableData: [
+import Pagination from "@/components/Pagination/index.vue";
+import { reactive } from "@vue/reactivity";
+let tableData=reactive([
                 {
                     error: 'Network error',
                     count: '130',
@@ -38,10 +42,7 @@ export default {
                     count: '130',
                     people: '2203'
                 },
-            ]
-        };
-    },
-}
+            ])
 </script>
 
 

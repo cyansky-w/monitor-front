@@ -10,7 +10,7 @@
             <span>概览</span>
           </el-menu-item>
 
-          <el-menu-item index="/home/healthstate">
+          <el-menu-item index="/home/health">
             <el-icon>
               <icon-menu />
             </el-icon>

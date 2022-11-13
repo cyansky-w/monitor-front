@@ -14,6 +14,15 @@
                                             <router-link class="nav-link" :class="{'active':route.name==='error_list'}"  :to="{name: 'error_list'}" @click="getRoute">错误列表</router-link>
                                         </li>
                                     </ul>
+                                    
+                                </div>
+                                <div class="date-box p-2">
+                                        <el-date-picker
+                                            v-model="date"
+                                            type="date"
+                                            placeholder="Pick a day"
+                                            :size="size"
+                                        />
                                 </div>
                             </div>
                         </nav>
@@ -32,9 +41,10 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import {useRoute} from 'vue-router';
 let route=useRoute();
+let date=reactive(new Date())
 </script>
 
 
@@ -58,6 +68,10 @@ let route=useRoute();
     position: absolute;
     bottom: 0;
     left: 0;
+
+}
+
+.date-box{
 
 }
 

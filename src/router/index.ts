@@ -1,13 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/pages/homeView/homeView.vue';
-import HealthState from '../views/pages/healthState/healthState.vue';
-import PerformanceView from '../views/pages/performanceView/performanceView.vue';
+import HomeView from '../views/pages/home/homeView.vue';
 import JsView from '../views/test/js.vue';
 import NetworkView from '../views/test/network.vue';
-import MapView from '../views/pages/mapView/mapView.vue';
 import IndexView from '@/views/pages/index/index.vue'
-import JkhsfxView from '../views/pages/jkhsfxView/jkhsfxView.vue';
-import YmxnfxView from '../views/pages/ymxnfxView/ymxnfxView.vue';
 import SettingsView from '../views/pages/settings/settings.vue';
 
 const routes = [
@@ -16,40 +11,31 @@ const routes = [
       name: 'home',
       component: HomeView,
       // 如果是根目录的话重定向到overview
-      redirect:"/home/overview",
+      redirect:"/home/overView",
       children:[
         {
-          path:"/home/overview",
+          path:"/home/overView",
           name:"overview",
-          component:() => import("../views/pages/overView/overView.vue")
+          component:() => import("@/views/pages/home/overview/index.vue")
         },
         {
-          path:"/home/healthstate",
-          name:"healthstate",
-          component: HealthState
+          path:"/home/health",
+          name:"health",
+          component:() => import("@/views/pages/home/health/index.vue")
+
         },     
         {
             path:"/home/performance",
             name:"performance",
-            component: PerformanceView
+            component:() => import("@/views/pages/home/performance/index.vue")
+
         },      
         {
             path:"/home/map",
             name:"map",
-            component: MapView
+            component:() => import("@/views/pages/home/map/index.vue")
+
         }
-      ]
-    },
-    {
-      path: '/',
-      // 如果是根目录的话重定向到overview
-      redirect:"/index",
-      children:[
-        {
-          path:"/index",
-          name:"index",
-          component:IndexView
-        },
       ]
     },
     {
@@ -76,15 +62,22 @@ const routes = [
       ]
     },
     {
-      path: '/jkhsfx',
-      name: 'jkhsfx',
-      component: JkhsfxView
-    },  
-    {
-      path: '/ymxnfx',
-      name: 'ymxnfx',
-      component: YmxnfxView
-    },  
+      path: '/performance',
+      name:"test",
+      redirect:"/performance/api",
+      children:[
+        {
+          path: '/performance/api',
+          name: 'apiPerformance',
+          component:() => import("@/views/pages/performance/api/index.vue")
+      }, 
+      {
+          path: '/performance/page',
+          name: 'pagePerformance',
+          component:() => import("@/views/pages/performance/page/index.vue")
+      }, 
+      ]
+    },
     {
       path: '/error',
       name: 'errorStat',
@@ -105,24 +98,47 @@ const routes = [
       ]
     },
     {
-      path: '/errorapi',
-      name: 'errorapi',
+      path: '/errorApi',
+      name: 'errorApi',
       isHide: true, 
       component: () => import("../views/pages/errorStat/error/index.vue"),
-      redirect: "/errorapi/overview",
+      redirect: "/errorApi/overview",
       children: [
         {
-          path: "/errorapi/overview",
-          name: "errorapi_overview",
+          path: "/errorApi/overview",
+          name: "errorApi_overview",
           component: () => import("../views/pages/errorStat/api/overview.vue"),
         },
         {
-          path: "/errorapi/list",
-          name: "errorapi_list",
+          path: "/errorApi/list",
+          name: "errorApi_list",
           component: () => import("../views/pages/errorStat/api/list.vue"),
         },
       ]
     },
+    {
+      path: '/errorResource',
+      name: 'errorResource',
+      isHide: true, 
+      component: () => import("../views/pages/errorStat/resource/index.vue")
+    },
+    {
+      path: '/user',
+      name: 'user',
+      redirect:"/user/list",
+      children: [
+        {
+          path: "/user/list",
+          name: "userList",
+          component: () => import("@/views/pages/user/list.vue"),
+        },
+        {
+          path: "/user/detail",
+          name: "userDetail",
+          component: () => import("@/views/pages/user/detail.vue"),
+        },
+      ]
+    }, 
     {
       path: '/manager',
       name: 'manager',
@@ -134,7 +150,19 @@ const routes = [
           component: () => import("../views/pages/manager/login.vue"),
         },
       ]
-    },  
+    },
+    {
+      path: '/',
+      // 如果是根目录的话重定向到overview
+      redirect:"/index",
+      children:[
+        {
+          path:"/index",
+          name:"index",
+          component:IndexView
+        },
+      ]
+    },
   ]
   
   const router = createRouter({
