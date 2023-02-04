@@ -46,15 +46,17 @@
           </div>
         </div>
       </div>
-    </div>
+  </div>
 </template>
 
 <script setup>
 import ScoreCircle from "@/components/ScoreCircle/ScoreCircle.vue"
 import MCharts from "@/components/MCharts/MCharts.vue";
 import ScrollNumber from "@/components/ScrollNumber/ScrollNumber.vue";
+import MDropDown from "@/components/MDropDown/MDropDown.vue";
+import { useProjectStore } from "@/store/project";
 
-import { onMounted, ref } from "@vue/runtime-core"
+import { onMounted, reactive, ref } from "@vue/runtime-core"
 import { useRouter } from 'vue-router'
 const props=defineProps({
   projectId:{
@@ -84,19 +86,29 @@ const props=defineProps({
   projectName:{
     type:String,
     default:"项目名称"
+  },
+  env:{
+    type:String,
+    default:"prod"
   }
 })
-
+const projectStore = useProjectStore();
 const router=useRouter();
 
 function gotoHome(){
+  projectStore.setProjectId(props.projectId)
   router.push({ name: 'home', params: { projectId:props.projectId }})
 }
 function gotoSet(){
   router.push({ name: 'settings', params: { projectId:props.projectId }})
 }
 
-
+let env=ref('prod')
+function onSelectEnv(env){
+  debugger
+  env.value=env;
+  return true
+}
 
 </script>
 

@@ -36,7 +36,6 @@ export function proxyFetch(){
                         console.log('fetchResponse',responseCopy)
                         return response.json()
                 }).then((res)=>{
-                    debugger
                     console.log(res);
                     if(monitorFlag){
                         

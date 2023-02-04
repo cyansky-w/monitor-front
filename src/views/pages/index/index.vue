@@ -2,13 +2,12 @@
   <div class="container-fluid">
     <div class="row justify-content-between my-3 fs-6 head-filter">
       <div class="col-4">
-        <button type="button" class="btn btn-primary px-3 py-1">+ Primary</button>
+        <router-link class="btn btn-primary px-3 py-2 d-inline-block" to="/settings">+ 创建应用</router-link>
       </div>
       <div class="col-8 ">
         <div class="d-flex justify-content-end align-items-center">
-          <MDropDown></MDropDown>
-          <MDropDown></MDropDown>
-          <MDropDown name="下拉3" @select="tapselect"></MDropDown>
+          <MDropDown name="环境" :menuList="dict.envLisit"></MDropDown>
+          <MDropDown name="健康状态" :menuList="dict.statusLisit" @select="tapselect"></MDropDown>
           <div class="input-group flex-nowrap w-auto">
             <input type="text" class="form-control " placeholder="Username" aria-label="Username"
               aria-describedby="addon-wrapping">
@@ -22,7 +21,7 @@
     </div>
     <div class="row gx-2">
       <div class="col-4 pb-2" v-for="item in 10" :key="item">
-        <IndexCard :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="oedrtjghoehruf" :option="option"></IndexCard>
+        <IndexCard :projectId="item" :active-user="1651" :heath-info="healthInfo" :heath-score="10*item" :user-info="userInfo" project-id="awdafgawdfagrtdhgdrtg" :option="option"></IndexCard>
       </div>
     </div>
   </div>
@@ -32,8 +31,8 @@
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 import IndexCard from "@/components/IndexCard/IndexCard.vue"
 import { reactive, ref } from "vue";
-import {option} from './optionIndex.js'
-
+import { option } from './mid/optionIndex.js'
+import dict from './mid/dict'
 let userInfo=reactive([{
   name:"位活跃用户",
   value:1341

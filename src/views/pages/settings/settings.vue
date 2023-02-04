@@ -7,92 +7,52 @@
                         设置
                     </div>
                     <div class="fw-bold">
-                        <button class="btn btn-primary px-2 py-1 ">保存</button>
-                        <button class="btn btn-danger px-2 py-1 ms-3">删除</button>
+                        <button class="btn btn-primary px-2 py-1 " @click="onSave">保存</button>
+                        <button class="btn btn-danger px-2 py-1 ms-3" @click="onDelete">删除</button>
                     </div>
                 </div>
             </div>
             <div class="setting-content form">
                 <div class="fs-6 pb-3 fw-bold">基本信息</div>
                 <div class="mb-3 row">
-                    <label for="projectName" class="col-sm-2 col-form-label fs-m">应用名称</label>
+                    <label for="projectName" class="require col-sm-2 col-form-labe">应用名称</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="projectName">
+                        <input type="text" class="form-control" id="projectName" v-model="baseInfo.name">
                     </div>
                 </div>
+                <div class="alert alert-danger m-0" role="alert" v-show="alert">应用名称不能为空</div>
                 <div class="mb-3 row">
                     <label for="createTime" class="col-sm-2 col-form-label">创建时间</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control-plaintext" readonly id="createTime">
+                        <input type="text" class="form-control-plaintext" readonly id="createTime" v-model="baseInfo.createTime">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="projectId" class="col-sm-2 col-form-label">应用Id</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control-plaintext" readonly id="projectId">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">创建团队</label>
-                    <div class="col-sm-10 d-flex align-items-center">
-                        <div class="form-check me-3" v-for="(item, index) in productionList" :key="item.value">
-                            <input class="form-check-input" type="checkbox" :checked="item.checked"
-                                :id="`production_${item.value}`">
-                            <label class="form-check-label" :for="`production_${item.value}`" @click="checkProd(index)">
-                                {{ item.name }}{{ item.checked }}
-                            </label>
-                        </div>
+                        <input type="text" class="form-control-plaintext" readonly id="projectId" v-model="baseInfo.projectId">
                     </div>
                 </div>
             </div>
             <div class="setting-content form">
                 <div class="fs-6 pb-3 fw-bold">应用配置</div>
-                <div class="mb-3 row" v-for="(item, index) in configList" :key="item.value">
-                    <label for="createTime" class="col-sm-2 col-form-label">{{ item.name }}</label>
+                <div class="mb-3 row" v-for="(configItem, configIndex) in configList" :key="configItem.value">
+                    <label for="createTime" class="col-sm-2 col-form-label">{{ configItem.name }}</label>
                     <div class="col-sm-10  d-flex align-items-center">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" :id="`config_${item.value}`"
-                                @click="checkConfig(index)">
-                            <label class="form-check-label" :for="`config_${item.value}`">{{
-                                    item.describe
+                            <input class="form-check-input" type="checkbox" role="switch" :id="`config_${configItem.value}`"
+                                @click="checkConfig(configIndex)">
+                            <label class="form-check-label" :for="`config_${configItem.value}`">{{
+                                    configItem.describe
                             }}</label>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label for="createTime" class="col-sm-2 col-form-label">SPA路由解析</label>
-                    <div class="col-sm-10 d-flex align-items-center">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" :id="`config_spa`" :checked="spaFlag"
-                                @click="spaFlag = !spaFlag" data-bs-toggle="collapse" href="#collapseExample"
-                                role="button">
-                            <label class="form-check-label"
-                                :for="`config_spa`">开启此项后，会监听页面的hashchange事件/popstate事件上报PV路由信息，适用于SPA应用场景</label>
-                        </div>
-                    </div>
-                </div>
                 <div class="mb-3 row">
-                    <label for="createTime" class="col-sm-2"></label>
-                    <div class="col-sm-10 d-flex align-items-center">
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body py-1">
-                                <div class="row">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            :id="`config_hash`" :checked="hashFlag" @click="hashFlag = !hashFlag">
-                                        <label class="form-check-label"
-                                            :for="`config_hash`">hash模式(监听hashchange事件)</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            :id="`config_history`" :checked="historyFlag"
-                                            @click="historyFlag = !historyFlag">
-                                        <label class="form-check-label"
-                                            :for="`config_history`">history模式(监听popstate事件)</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <label class="col-sm-2 col-form-label">配置代码</label>
+                    <div class="col-sm-10">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="配置代码" class="setting-code" v-model="configStr">
+                        </textarea> 
                     </div>
                 </div>
             </div>
@@ -102,67 +62,84 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from "@vue/reactivity";
-
-let productionList = reactive([{
-    name: "开发（dev）",
-    value: "dev",
-    checked: true
-},
-{
-    name: "测试（sit）",
-    value: "sit",
-    checked: true
-},
-{
-    name: "预发布（stag）",
-    value: "stag",
-    checked: true
-},
-{
-    name: "生产（prod）",
-    value: "prod",
-    checked: true
-}])
+import { computed } from "vue";
 let configList = reactive([{
     name: "首屏指标",
     describe: "开启此选项后，将采集首屏FP，FCP，FMP，LCP数据",
-    value: 0,
-    checked: true
+    value: 'firstScreen',
+    checked: false
 },
 {
     name: "资源监听",
     describe: "开启此选项后，实时上报页面加载的静态资源。",
-    value: 1,
-    checked: true
+    value: 'resource',
+    checked: false
 },
 {
     name: "api上报",
     describe: "开启此选项后，实时上报页面请求相关数据。",
-    value: 2,
-    checked: true
+    value: 'api',
+    checked: false
 },
 {
     name: "白屏上报",
     describe: "开启此选项后，上报页面渲染白屏数据。",
-    value: 3,
-    checked: true
+    value: 'blank',
+    checked: false
+},
+{
+    name: "SPA模式",
+    describe: "开启此项后，会开启对路由变化监控，上报针对单页面应用不同页面。",
+    value: 'spa',
+    checked: false
 }])
 
-let spaFlag = ref(true);
-let hashFlag = ref(true);
-let historyFlag = ref(true);
+let baseInfo=reactive({
+    name:'应用名称',
+    projectId:'wdafawdfawdaw',
+    createTime:new Date(),
+});
+let configStr=computed(()=>{
+    let configStr="import monitor from '@/utils/monitor/index.js'\nmonitor.setconfig({";
+    for(let configItem of configList){
+        configStr+=`\n${configItem.value} : ${configItem.checked},`;
+    };
+    configStr+=`\nproduction:'dev'\n});\nmonitor.useMonitor();`
+    return configStr;
+})
 
-
-function checkProd(index: number) {
-    productionList[index].checked = !productionList[index].checked
-}
 function checkConfig(index: number) {
     configList[index].checked = !configList[index].checked
 }
+let alert=ref(false);
+function onSave(){
+    if(!baseInfo.name){
+        alert.value=true;
+    }else{
+        alert.value=false;
+    }
+}
+
 </script>
 
 <style lang="scss">
 .setting-content {
     padding: 1rem 8rem;
+}
+.setting-code{
+    width: 100%;
+    height: 10rem;
+    border: none;
+    background: #fafafa;
+}
+.require{
+    position: relative;
+}
+.require::after{
+    content: '*';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color:red;    
 }
 </style>

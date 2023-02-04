@@ -134,10 +134,11 @@
           </div>
         </div>
         <div class="login-submit" >
-                <CyanButton class="btn-login" :disabled="!agreeCase">{{isRegister?'注册':'登录'}}</CyanButton>
-                <!-- <el-checkbox v-model="agreeCase" size="small">
+          <button @click="login"></button>
+                <CyanButton class="btn-login" :disabled="!agreeCase" @click="login">{{isRegister?'注册':'登录'}}</CyanButton>
+                <el-checkbox v-model="agreeCase" size="small">
                     <span>我已阅读并同意<button>服务条款</button>、<button>服务条款</button></span>
-                </el-checkbox> -->
+                </el-checkbox>
             </div>
             <div class="btn-switch">
               <button class="iconfont" :class="[isRegister?'icon-left-circle':'icon-right-circle']" @click="isRegister=!isRegister">{{btnSwitchText}}</button>  
@@ -145,11 +146,18 @@
       </div>
     </div>
   </div>
+  <CyanFooter/>
+
 </template>
 
 <script setup>
-import CyanButton from "@/components/CyanButton/CyanButton.vue";
+import CyanButton from "@/components/CyanButton/index.vue";
+import CyanFooter from "@/components/CyanFooter/index.vue";
+import { useUserStore } from "@/store/user";
+import { useRouter } from "vue-router";
 import { ref,computed } from "vue";
+const userStore=useUserStore();
+const router=useRouter();
 let accountLogin = ref(true);
 let phone=ref('');
 let verificationCode=ref('');
@@ -171,12 +179,19 @@ function clearValue(el){
   }
 
 }
+function login(){
+  console.log('----------')
+  userStore.login();
+  router.push({ name: 'index'})
+  
+}
 </script>
 
 <style scoped lang="scss">
+
 .login-bg {
   background-image: url("/src/assets/img/login_bg.jpg");
-  height: 100%;
+  height: calc(100vh - 61px);
   background-size: cover;
 }
 .login-container {

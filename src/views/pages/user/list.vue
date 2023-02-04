@@ -43,40 +43,7 @@
 import Pagination from "@/components/Pagination/index.vue";
 import { reactive, ref } from "@vue/reactivity";
 
-let userVisitList=reactive([
-    {
-        userId:'124ef325rzw5',
-        page:"https://www.test.com/home.html",
-        device:"安卓",
-        ip:'106.120.233.26',
-        place:'中国 北京 北京市',
-        time:'2021-02-22 10:01:04'
-    },
-    {
-        userId:'124ef325rzw5',
-        page:"https://www.test.com/home.html",
-        device:"安卓",
-        ip:'106.120.233.26',
-        place:'中国 北京 北京市',
-        time:'2021-02-22 10:01:04'
-    },
-    {
-        userId:'124ef325rzw5',
-        page:"https://www.test.com/home.html",
-        device:"安卓",
-        ip:'106.120.233.26',
-        place:'中国 北京 北京市',
-        time:'2021-02-22 10:01:04'
-    },
-    {
-        userId:'124ef325rzw5',
-        page:"https://www.test.com/home.html",
-        device:"安卓",
-        ip:'106.120.233.26',
-        place:'中国 北京 北京市',
-        time:'2021-02-22 10:01:04'
-    },
-])
+let userVisitList=reactive()
 
 let queryParams=reactive({
     pageNum:"1",

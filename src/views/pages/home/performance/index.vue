@@ -7,12 +7,11 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <div class="card text-black bg-light h-100" >
-                    <!-- <div class="card-header"> TTFB平均时间</div> -->
                         <div class="card-body">
                             <h5 class="card-title">TTFB平均时间</h5>
                             <p class="card-text">              
-                                159.91
-                                <small>ms</small></p>
+                                {{pageAvg.data.ttfbTimeAvg}}
+                            <small>ms</small></p>
                         </div>
                 </div>
             </div>
@@ -22,7 +21,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Dom解析时间</h5>
                             <p class="card-text">
-                                2.58
+                                {{pageAvg.data.parseDomTimeAvg}}
+
                                 <small>s</small>
                             </p>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="card-body">
                             <h5 class="card-title">页面平均加载时间</h5>
                             <p class="card-text">
-                                2.74
+                                {{pageAvg.data.allTimeAvg}}
                                 <small>s</small>
                             </p>
                         </div>
@@ -49,7 +49,7 @@
                         <h6>页面加载耗时分段数量占比</h6>
                     </div>
                     <div class="card-body">
-                        <MCharts :option="option" style="width: 100%; height: 100%"/>
+                        <MCharts :option="option1" style="width: 100%; height: 100%"/>
 
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                         <div class="card-body">
                             <h5 class="card-title">接口请求总量</h5>
                             <p class="card-text">
-                                214.15
+                                {{apiAvg.data.numberInSevenDays}}
                                 <small>ms</small>
                             </p>
                         </div>
@@ -113,7 +113,7 @@
                         <div class="card-body">
                             <h5 class="card-title">接口请求平均耗时</h5>
                             <p class="card-text">
-                                214.15
+                                {{apiAvg.data.averageTime}}
                                 <small>ms</small>          
                             </p>
                         </div>
@@ -125,7 +125,7 @@
                         <div class="card-body">
                              <h5 class="card-title">接口请求成功率</h5>
                             <p class="card-text">
-                                100%     
+                                {{apiAvg.data.successPre}}
                             </p>
                         </div>
                 </div>
@@ -139,7 +139,7 @@
                         接口请求耗时分段数量占比
                     </div>
                     <div class="card-body">
-                        <MCharts :option="option" style="width: 100%; height: 100%"/>
+                        <MCharts :option="option1" style="width: 100%; height: 100%"/>
                     </div>
                 </div>
             </div>
@@ -184,26 +184,22 @@
 
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 
 import MCharts from "@/components/MCharts/MCharts.vue";
+import { option1 } from "./optionPerformance";
+import apis from "@/service/interface";
+import { onMounted, reactive } from "vue";
+import { useProjectStore } from '@/store/project';
+const projectStore = useProjectStore();
+let pageAvg = reactive({data:{}})
+let apiAvg = reactive({data:{}})
+onMounted(async ()=>{
+    pageAvg.data = (await apis.performance.overView.getPageAVGTime({projectId: projectStore.getProjectId, timestamp: projectStore.getTimestamp.getTime(), env: projectStore.getEnv})).data;
+    apiAvg.data = (await apis.performance.overView.getApiAVGTime({projectId: projectStore.getProjectId, timestamp: projectStore.getTimestamp.getTime(), env: projectStore.getEnv})).data;
+    console.log('onMounted', pageAvg.data, apiAvg.data)
+})
 
-import { option1, option2 } from "./option";
-
-export default {
-    name: "PerformanceView",
-  components: {
-    MCharts,
-  },
-
-  data() {
-    return {
-      option: option1,
-      width: "400px",
-    };
-  },
-
-}
 
 </script>
 

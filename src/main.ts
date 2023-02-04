@@ -10,10 +10,10 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import "@/assets/css/iconfont.css";
 
-//网络请求api
-import ApiService from '@/service/api.service.js';
 
+import { createPinia } from 'pinia'
 
 import monitor from '@/utils/monitor/index.js'
 monitor.setconfig({
@@ -21,14 +21,17 @@ monitor.setconfig({
    resource:true,
    api:true,
    blank:true,
-   hash:true,
-   history:true,
+   spa: true,
    pid:'awdafgawdfagrtdhgdrtg',
    production:'dev'
 });
 monitor.useMonitor();
 
 const app=createApp(App);
+
+
+
  app.use(router)
     .use(ElementPlus)
+    .use(createPinia())
     .mount('#app')

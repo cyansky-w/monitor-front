@@ -1,36 +1,17 @@
 import {tracker} from "../utils/tracker";
-export function hash(hash:boolean|undefined,history:boolean|undefined){
-    if(hash){
-        window.addEventListener('hashchange',(e)=>{
-            setTimeout(() => {
-                // tracker.send({
-                //     type: "popstate",
-                //     newURL: e.newURL,
-                //     oldURL:e.oldURL
-                //   });
-                  tracker.gifSend({
-                    type: "popstate",
-                    newURL: encodeURIComponent(e.newURL) ,
-                    oldURL:encodeURIComponent(e.oldURL)
-                  });
-            }, 100);
-            
-          }, false);
-    }
-    if(history){
-        window.addEventListener('popstate',(e)=>{ 
-            // tracker.send({
-            //   type: "popstate",
-            //   current: e.state.current,
-            //   back:e.state.back,
-            //   forward:e.state.forward
-            // });
-            tracker.gifSend({
-              type: "popstate",
-              current: encodeURIComponent(e.state.current),
-              back:encodeURIComponent(e.state.back),
-              forward:encodeURIComponent(e.state.forward)
-            });
-          }, false);
-    }
+export function hash(){
+    window.history.pushState = new Proxy(window.history.pushState, {
+      apply: function (target, thisBinding, args) {
+        const {current} = args[0];
+        var connection = navigator.connection;
+        tracker.gifSend({
+          type: "pv",
+          source:document.referrer||"",
+          effectiveType: connection.effectiveType, //网络环境
+          rtt: connection.rtt, //往返时间
+          screen: `${window.screen.width}x${window.screen.height}`, //设备分辨率
+        });
+        return target.apply(thisBinding, args);
+      },
+    });
 }

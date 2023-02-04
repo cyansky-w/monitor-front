@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import ApiService from '@/service/api.service.js';
+import ApiService from '@/service/api.js';
 function sendSuccess() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "/success?a=123", true);

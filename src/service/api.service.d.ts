@@ -1,1 +1,0 @@
-declare module '@/service/api.service.js';

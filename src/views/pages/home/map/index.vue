@@ -12,15 +12,32 @@
                                 <button type="button" class="btn btn-outline-primary btn-sm" :class="{'btn-primary':!isChina}" @click="mapChange">世界</button>
                             </div>
                         </div>
-                        <HelloEcharts ref="mapChart" :option="isChina ? chinaOption : worldOption" height="calc(100% - 2rem)">
-                        </HelloEcharts>
+                        <MCharts ref="mapChart" :option="isChina ? chinaOption : worldOption" height="calc(100% - 2rem)">
+                        </MCharts>
                     </div>
                 </div>
             </div>
             <div class="map-list">
                 <div class="card text-black bg-light">
                     <div class="card-header"> TTFB平均时间</div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <div>
+                                <div class="row text-center">
+                                    <div class="col-4">排名</div>
+                                    <div class="col-4">城市</div>
+                                    <div class="col-4">用户数</div>
+                                </div>
+                            </div>
+                            <tbody>
+                                <div v-for="item in 10" :index="item"  class="row text-center">
+                                    <div class="col-4">{{ item }}</div>
+                                    <div class="col-4">城市</div>
+                                    <div class="col-4">123</div>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,12 +46,18 @@
 
 
 <script lang="ts" setup>
-import HelloEcharts from "@/components/MCharts/MCharts.vue";
-import { after } from "lodash";
-import { ref } from "vue";
+import MCharts from "@/components/MCharts/MCharts.vue";
+import ScoreCircle from "@/components/ScoreCircle/ScoreCircle.vue";
+import apis from "@/service/interface";
+import { onMounted, ref, reactive } from "vue";
+import { useProjectStore } from '@/store/project';
 // import echarts from 'echarts';
-import { chinaOption } from "./optionChina";
+import { chinaOption, initData } from "./optionChina";
 import { worldOption } from "./optionWorld";
+
+onMounted(() => {
+    initData(chinaOption);
+})
 
 let isChina = ref(true);
 let mapChart = ref(null);

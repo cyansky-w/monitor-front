@@ -8,23 +8,20 @@
                         <p>资源加载报错</p>
                         
                         <div class="chart-box">
-                            <HelloEcharts :option="option1" />
+                            <HelloEcharts :option="option" />
                         </div>
                     </div>
                     <div class="col-4"> 
                         <p>今日概况</p>
                         <div class="row h-100">
                             <div class="col-6 h-50">
-                                总发生次数
+                                总发生次数：{{ overViewData.data.errorNumber }}
                             </div>
                             <div class="col-6 h-50">
-                                总发生次数
+                                总影响页面数：{{ overViewData.data.pageNumber }}
                             </div>
                             <div class="col-6 h-50">
-                                总发生次数
-                            </div>
-                            <div class="col-6 h-50">
-                                总发生次数
+                                总影响用户数：{{ overViewData.data.userNumber }}
                             </div>
                         </div>
                     </div>
@@ -54,8 +51,19 @@
 
 <script setup>
 import HelloEcharts from "@/components/MCharts/MCharts.vue";
-import { option1 } from "./optionStat";
+import { reactive, onMounted } from "vue";
+import { option, getOption } from "./optionStat";
+import { useProjectStore } from "@/store/project";
+import apis from "@/service/interface";
+let overViewData = reactive({data: {}})
+onMounted(async() => {
+    getOption();
+    let overviewRes = await apis.error.resource.getTody();
+    overViewData.data = overviewRes.data;
+})
 
+
+onMounted
 
 </script>
 

@@ -42,121 +42,102 @@
       </div>
     </div>
 
-      <div class="card">
-        <div  class="card-header d-flex 
-              align-items-center
-              justify-content-between">
-            <div>接口列表（点击查看接口详情）</div>
-            <div class="float-end">
-                <MDropDown name="下拉3" @select="tapselect"></MDropDown>
-            </div>
+    <div class="card">
+      <div
+        class="card-header d-flex align-items-center justify-content-between"
+      >
+        <div>接口列表（点击查看接口详情）</div>
+        <div class="float-end">
+          <MDropDown name="下拉3" @select="tapselect"></MDropDown>
         </div>
-        <div class="card-body">
-          <div class="row p-3">
-            <div class="col-md-5 mb-3">
-                <h6>30天变化趋势 <small>（点击切换其他日期）</small></h6>
-                <MCharts :option="option2" style="width: 100%; height: 200px" />
-            </div>
-            <div class="col-md-7 mb-3">
-                <h6>一小时内数量趋势</h6>
-                <MCharts :option="option2" style="width: 100%; height: 200px" />
+      </div>
+      <div class="card-body">
+        <div class="row p-3">
+          <div class="col-md-5 mb-3">
+            <h6>30天变化趋势 <small>（点击切换其他日期）</small></h6>
+            <MCharts :option="option2" style="width: 100%; height: 200px" />
+          </div>
+          <div class="col-md-7 mb-3">
+            <h6>一小时内数量趋势</h6>
+            <MCharts :option="option2" style="width: 100%; height: 200px" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="list-group">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action active"
+                aria-current="true"
+              >
+                https://www.test.com/mcl/ltv/application/promote/query (85)
+              </a>
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
+              <a href="#" class="list-group-item list-group-item-action"
+                >https://www.test.com/mcl/ltv/application/promote/query (85)</a
+              >
             </div>
           </div>
-
-          <div class="row">
-            
-            <div class="col-md-4 mb-3">
-              <div class="list-group">
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action active"
-                  aria-current="true"
-                >
-                  https://www.test.com/mcl/ltv/application/promote/query (85)
-                </a>
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
-                <a href="#" class="list-group-item list-group-item-action"
-                  >https://www.test.com/mcl/ltv/application/promote/query
-                  (85)</a
-                >
+          <div class="col-md-8 mb-3">
+            <div class="row">
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">平均网络耗时</h5>
+                    <p class="card-text">19.37s</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">影响用户</h5>
+                    <p class="card-text">2</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">发生页面</h5>
+                    <p class="card-text">4</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-8 mb-3">
-              <div class="row">
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">平均网络耗时</h5>
-                      <p class="card-text">19.37s</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">影响用户</h5>
-                      <p class="card-text">2</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">发生页面</h5>
-                      <p class="card-text">4</p>
-                    </div>
-                  </div>
-                </div>
+            <br /><br /><br />
+            <h5>加载耗时列表(ms)</h5>
+            <div class="card-body">
+                  <MCharts :option="option3" style="width: 100%; height: 200px" />
               </div>
-              <br /><br /><br />
-              <h5>发生页面列表</h5>
-              <div class="page-list">
-              <div class="row " v-for="item in 5" :key="item">
-                <div class="col">
-                    <text>
-                        http://www.test.com/webfunny_multi/home.html
-                    </text>
-                </div>
-                <div class="col text-end">
-                    <text class="">{{item}}</text>
-                </div>
-              </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -164,8 +145,8 @@
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 
 import MCharts from "@/components/MCharts/MCharts.vue";
-import { option1, option2 } from "./option.js";
-function tapselect(){}
+import { option1, option2, option3 } from "./option.js";
+function tapselect() {}
 </script>
 
 <style scoped>
@@ -175,18 +156,17 @@ function tapselect(){}
 .btn-group .active {
   background: #2ed796;
 }
-.list-group a:nth-child(2n){
-    background: #f0f0f0;
+.list-group a:nth-child(2n) {
+  background: #f0f0f0;
 }
-.list-group .active{
-    background: #2ed796;
-    
+.list-group .active {
+  background: #2ed796;
 }
 
-.page-list .row{
-    padding: .5rem 0;
+.page-list .row {
+  padding: 0.5rem 0;
 }
-.page-list .row:nth-child(2n){
-    background: #f0f0f0;
+.page-list .row:nth-child(2n) {
+  background: #f0f0f0;
 }
 </style>

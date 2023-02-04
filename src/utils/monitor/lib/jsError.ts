@@ -65,9 +65,9 @@ export function injectJsError() {
         message = reason.message;
         if (reason.stack) {
           let matchResult = reason.stack.match(/at\s+(.+):(\d+):(\d+)/);
-          filename = matchResult[1];
-          line = matchResult[2];
-          column = matchResult[3];
+          filename = matchResult ? matchResult[1] || '' : '';
+          line = matchResult ? matchResult[2] || '' : '';
+          column = matchResult ? matchResult[3] || '' : '';
         }
         stack = getLines(reason.stack);
       }

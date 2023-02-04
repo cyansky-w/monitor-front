@@ -15,12 +15,14 @@ export default defineConfig({
   server: {
 		port: 8080,
 		proxy: {
-			[`${loadEnv('production', process.cwd()).VITE_APP_BASE_API}`]: {
-				target: ' http://monitor-api.twotomatoes.org.cn:10086', // 目标服务  
+			'/prod-api': {
+				target: ' http://81.68.222.187:10013', // 目标服务 
+				rewrite:(path)=>path.replace(/^\/dev-api/, ""),
 				changeOrigin: true
 			},
-			[`${loadEnv('development', process.cwd()).VITE_APP_BASE_API}`]: {
-				target: ' http://monitor-api.twotomatoes.org.cn:10086', // 目标服务  
+			'/dev-api': {
+				target: ' http://81.68.222.187:10013', // 目标服务
+				rewrite:(path)=>path.replace(/^\/dev-api/, ""),
 				changeOrigin: true
 			},
 			'/success': {

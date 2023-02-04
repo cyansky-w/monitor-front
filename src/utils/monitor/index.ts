@@ -14,8 +14,7 @@ type configType={
     resource?:boolean,
     api?:boolean,
     blank?:boolean,
-    hash?:boolean,
-    history?:boolean
+    spa?:boolean,
     pid:string,
     production:'dev'|'sit'|'stag'|'prod'
 }
@@ -50,7 +49,9 @@ class Monitor{
         if(this.config.firstScreen){
             timing();
         }
-        hash(this.config.hash,this.config.history);
+        if(this.config.spa){
+            hash();
+        }
         pv();
         longTask();
     }

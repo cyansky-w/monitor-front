@@ -1,13 +1,13 @@
 
 //引入axios拦截器
-import axios from "@/service/interceptors.service";
+import axios from "@/service/interceptors";
 
 const ApiService = {
 
   //创建不同的网络请求方法
-  get(resource, slug = "", params,headers) {
+  get(resource, params, slug = "",headers) {
     return axios
-    .get(`${resource}/${slug}`, { params,headers})
+    .get(`${resource}${slug ? `/${slug}` : ''}`, { params,headers})
     .catch(error => {
       throw error.response;
     });

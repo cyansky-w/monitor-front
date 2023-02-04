@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/pages/home/homeView.vue';
 import JsView from '../views/test/js.vue';
 import NetworkView from '../views/test/network.vue';
@@ -6,11 +6,11 @@ import IndexView from '@/views/pages/index/index.vue'
 import SettingsView from '../views/pages/settings/settings.vue';
 
 const routes = [
+    //home
     {
       path: '/home',
       name: 'home',
       component: HomeView,
-      // 如果是根目录的话重定向到overview
       redirect:"/home/overView",
       children:[
         {
@@ -23,13 +23,12 @@ const routes = [
           name:"health",
           component:() => import("@/views/pages/home/health/index.vue")
 
-        },     
+        },
         {
-            path:"/home/performance",
-            name:"performance",
-            component:() => import("@/views/pages/home/performance/index.vue")
-
-        },      
+          path: "/home/performance",
+          name:"performance",
+          component:() => import("@/views/pages/home/performance/index.vue")
+        },
         {
             path:"/home/map",
             name:"map",
@@ -38,11 +37,13 @@ const routes = [
         }
       ]
     },
+    //setting
     {
       path:"/settings",
       name:"settings",
       component:SettingsView
     },
+    //test
     {
       path: '/test',
       name:"test",
@@ -61,9 +62,10 @@ const routes = [
       }, 
       ]
     },
+    //performance
     {
       path: '/performance',
-      name:"test",
+      name:"performancePage",
       redirect:"/performance/api",
       children:[
         {
@@ -76,8 +78,14 @@ const routes = [
           name: 'pagePerformance',
           component:() => import("@/views/pages/performance/page/index.vue")
       }, 
+      {
+        path: '/performance/paint',
+        name: 'paintPerformance',
+        component:() => import("@/views/pages/performance/paint/index.vue")
+    }, 
       ]
     },
+    //error
     {
       path: '/error',
       name: 'errorStat',
@@ -97,6 +105,7 @@ const routes = [
         },
       ]
     },
+    //errorApi
     {
       path: '/errorApi',
       name: 'errorApi',
@@ -116,12 +125,14 @@ const routes = [
         },
       ]
     },
+    //errorResource
     {
       path: '/errorResource',
       name: 'errorResource',
       isHide: true, 
       component: () => import("../views/pages/errorStat/resource/index.vue")
     },
+    //user
     {
       path: '/user',
       name: 'user',
@@ -139,6 +150,7 @@ const routes = [
         },
       ]
     }, 
+    //manager
     {
       path: '/manager',
       name: 'manager',
@@ -147,10 +159,29 @@ const routes = [
         {
           path: "/manager/login",
           name: "login",
-          component: () => import("../views/pages/manager/login.vue"),
+          component: () => import("@/views/pages/manager/login.vue"),
         },
+        {
+          path: '/manager/setting',
+          name: 'managerSetting',
+          component: () => import("@/views/pages/manager/setting/index.vue"),
+          redirect:"/manager/setting/info",
+          children: [
+            {
+              path: "/manager/setting/info",
+              name: "managerInfo",
+              component: () => import("@/views/pages/manager/setting/info.vue"),
+            },
+            {
+              path: "/manager/setting/team",
+              name: "teamInfo",
+              component: () => import("@/views/pages/manager/setting/team.vue"),
+            },
+          ]
+        }
       ]
     },
+    //index
     {
       path: '/',
       // 如果是根目录的话重定向到overview
