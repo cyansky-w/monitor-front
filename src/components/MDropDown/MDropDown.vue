@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
         <span class="dropdown-title align-middle" v-if="showName">{{props.name}}</span>
-        <button class="btn btn-select dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        <button class="btn btn-select dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" v-bind="$attrs"
             aria-expanded="false">
             {{itemChecked.name}}
         </button>
@@ -66,5 +66,6 @@ function select(item:{name:string,value:string|number|null}){
 .dropdown-title {
     padding: 1rem;
     padding-right: 0;
+    color: #777;
 }
 </style>

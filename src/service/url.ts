@@ -15,7 +15,7 @@ const urls = {
         },
         API:{
             NUMBER: '/enhance/error/numberOfApiError',
-            LIST:'/enhance/error/searchApiErrorDataByDesignation'
+            LIST:'/enhance/error/getApiErrorByDesignation',
         },
         RESOURCE:{
             NUMBER: '/enhance/error/numberOfResourceError',
@@ -43,6 +43,12 @@ const urls = {
             TOP_SCREEN: '/enhance/user/getTopByScreen',
             TOP_COUNTRY: '/enhance/user/getTopByCountry'
         },
+        VISIT: {
+            LIST: '/enhance/user/getMainListGroupByFirstTimestamp',
+            PAGE_LOAD: '/enhance/user/getUserPageAvgLoadTime',
+            API_LOAD: '/enhance/user/getUserInterfaceAvgTime',
+            ACTION: '/enhance/user/getUserAction',
+        }
         
     },
     PROJECT:{
@@ -54,6 +60,18 @@ const urls = {
             API_AVG_TIME:'/enhance/performance/getApiAVGTime',
             Page_Number_7D_By_Sub: '/enhance/performance/getPageNumberInSevenDaysBySub',
             API_Number_7D_By_Sub: '/enhance/performance/getApiNumberInSevenDaysBySub'
+        },
+        API:{
+            RANGE_NUMBER_PERCENTAGE: '/enhance/performance/getApiNumberAndPercentage',
+            NUMBER: '/enhance/performance/getThirtyDaysApiNumber',
+            MESSAGE: '/enhance/performance/getApiMessage',
+            INFO:'/enhance/performance/getApiInfo'
+        },
+        PAGE:{
+            RANGE_NUMBER_PERCENTAGE: '/enhance/performance/getPageNumberAndPercentage',
+            NUMBER: '/enhance/performance/getPageNumberByTimeRange',
+            MESSAGE: '/enhance/performance/getPageMessage',
+            INFO:'/enhance/performance/getPageInfo'
         }
 
     }

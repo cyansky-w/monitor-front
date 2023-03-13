@@ -20,7 +20,7 @@ let props=defineProps({
         display: inline-block;
         background-color: #004dda;
         color: white;
-        padding: 13px 25px;
+        padding: 3px 19px;
         box-sizing: content-box;
         border-radius: 5px;
         font-weight: bolder;

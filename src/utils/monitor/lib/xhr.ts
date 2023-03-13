@@ -47,7 +47,7 @@ let oldSend=XMLHttpRequest.prototype.send
             pathname: encodeURIComponent(thisArg.logData[1]),
             status: status + "-" + statusText, // 状态码
             duration,
-            response: thisArg.response ? JSON.stringify(thisArg.response) : "", // 响应体
+            response: thisArg.response ? JSON.stringify(thisArg.response).slice(0,1000) : "", // 响应体
             params: argumentsList[0] || "", // 入参
           });
         };

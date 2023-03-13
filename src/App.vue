@@ -63,4 +63,13 @@ export default {
 .fs-m {
   font-size: .9rem;
 }
+
+.row-title {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
 </style>

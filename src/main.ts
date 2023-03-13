@@ -15,7 +15,7 @@ import "@/assets/css/iconfont.css";
 
 import { createPinia } from 'pinia'
 
-import monitor from '@/utils/monitor/index.js'
+import monitor from 'cyansky-monitor'
 monitor.setconfig({
    firstScreen:true,
    resource:true,

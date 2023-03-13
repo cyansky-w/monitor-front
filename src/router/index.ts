@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
-import HomeView from '../views/pages/home/homeView.vue';
+import HomeView from '../views/home/homeView.vue';
 import JsView from '../views/test/js.vue';
 import NetworkView from '../views/test/network.vue';
-import IndexView from '@/views/pages/index/index.vue'
-import SettingsView from '../views/pages/settings/settings.vue';
+import IndexView from '@/views/index/index.vue'
+import SettingsView from '../views/settings/settings.vue';
 
 const routes = [
     //home
@@ -16,23 +16,23 @@ const routes = [
         {
           path:"/home/overView",
           name:"overview",
-          component:() => import("@/views/pages/home/overview/index.vue")
+          component:() => import("@/views/home/overview/index.vue")
         },
         {
           path:"/home/health",
           name:"health",
-          component:() => import("@/views/pages/home/health/index.vue")
+          component:() => import("@/views/home/health/index.vue")
 
         },
         {
           path: "/home/performance",
           name:"performance",
-          component:() => import("@/views/pages/home/performance/index.vue")
+          component:() => import("@/views/home/performance/index.vue")
         },
         {
             path:"/home/map",
             name:"map",
-            component:() => import("@/views/pages/home/map/index.vue")
+            component:() => import("@/views/home/map/index.vue")
 
         }
       ]
@@ -71,17 +71,17 @@ const routes = [
         {
           path: '/performance/api',
           name: 'apiPerformance',
-          component:() => import("@/views/pages/performance/api/index.vue")
+          component:() => import("@/views/performance/api/index.vue")
       }, 
       {
           path: '/performance/page',
           name: 'pagePerformance',
-          component:() => import("@/views/pages/performance/page/index.vue")
+          component:() => import("@/views/performance/page/index.vue")
       }, 
       {
         path: '/performance/paint',
         name: 'paintPerformance',
-        component:() => import("@/views/pages/performance/paint/index.vue")
+        component:() => import("@/views/performance/paint/index.vue")
     }, 
       ]
     },
@@ -90,18 +90,18 @@ const routes = [
       path: '/error',
       name: 'errorStat',
       isHide: true, 
-      component: () => import("../views/pages/errorStat/error/index.vue"),
+      component: () => import("../views/errorStat/error/index.vue"),
       redirect: "/error/overview",
       children: [
         {
           path: "/error/overview",
           name: "error_overview",
-          component: () => import("../views/pages/errorStat/error/overview.vue"),
+          component: () => import("../views/errorStat/error/overview.vue"),
         },
         {
           path: "/error/list",
           name: "error_list",
-          component: () => import("../views/pages/errorStat/error/list.vue"),
+          component: () => import("../views/errorStat/error/list.vue"),
         },
       ]
     },
@@ -110,18 +110,18 @@ const routes = [
       path: '/errorApi',
       name: 'errorApi',
       isHide: true, 
-      component: () => import("../views/pages/errorStat/error/index.vue"),
-      redirect: "/errorApi/overview",
+      component: () => import("../views/errorStat/api/index.vue"),
+      redirect: "/apiError/overview",
       children: [
         {
-          path: "/errorApi/overview",
-          name: "errorApi_overview",
-          component: () => import("../views/pages/errorStat/api/overview.vue"),
+          path: "/apiError/overview",
+          name: "apiError_overview",
+          component: () => import("../views/errorStat/api/overview.vue"),
         },
         {
-          path: "/errorApi/list",
-          name: "errorApi_list",
-          component: () => import("../views/pages/errorStat/api/list.vue"),
+          path: "/apiError/list",
+          name: "apiError_list",
+          component: () => import("../views/errorStat/api/list.vue"),
         },
       ]
     },
@@ -130,7 +130,7 @@ const routes = [
       path: '/errorResource',
       name: 'errorResource',
       isHide: true, 
-      component: () => import("../views/pages/errorStat/resource/index.vue")
+      component: () => import("../views/errorStat/resource/index.vue")
     },
     //user
     {
@@ -141,12 +141,12 @@ const routes = [
         {
           path: "/user/list",
           name: "userList",
-          component: () => import("@/views/pages/user/list.vue"),
+          component: () => import("@/views/user/list.vue"),
         },
         {
           path: "/user/detail",
           name: "userDetail",
-          component: () => import("@/views/pages/user/detail.vue"),
+          component: () => import("@/views/user/detail.vue")
         },
       ]
     }, 
@@ -159,23 +159,23 @@ const routes = [
         {
           path: "/manager/login",
           name: "login",
-          component: () => import("@/views/pages/manager/login.vue"),
+          component: () => import("@/views/manager/login.vue"),
         },
         {
           path: '/manager/setting',
           name: 'managerSetting',
-          component: () => import("@/views/pages/manager/setting/index.vue"),
+          component: () => import("@/views/manager/setting/index.vue"),
           redirect:"/manager/setting/info",
           children: [
             {
               path: "/manager/setting/info",
               name: "managerInfo",
-              component: () => import("@/views/pages/manager/setting/info.vue"),
+              component: () => import("@/views/manager/setting/info.vue"),
             },
             {
               path: "/manager/setting/team",
               name: "teamInfo",
-              component: () => import("@/views/pages/manager/setting/team.vue"),
+              component: () => import("@/views/manager/setting/team.vue"),
             },
           ]
         }

@@ -7,7 +7,7 @@ import urls from './url'
 const apis={
     error: {
         jsPromise:{
-            getNumBer:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
+            getNumber:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
                 return ApiService.get(urls.ERROR.JS_PROMISE.NUMBER, params)
             },
             getList:(params:{projectId: string, type?: 'jsError'|'promiseError'|'custommessage', timestamp?: Date|number, timeType?: 'days'|'hours'|'minutes', env?: string, range?: number, pageSize?: number, pageNum?: number})=>{
@@ -15,15 +15,15 @@ const apis={
             },
         },
         api:{
-            getNumBer:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
+            getNumber:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
                 return ApiService.get(urls.ERROR.API.NUMBER,params)
             },
-            getList:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
+            getList:(params:{projectId:string,timestamp:Date|number,env?: string, timeType?:'days'|'hours'|'minutes', range?: number, pageSize?: number, pageNum?: number})=>{
                 return ApiService.get(urls.ERROR.API.LIST,params)
             },
         },
         resource:{
-            getNumBer:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
+            getNumber:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
                 return ApiService.get(urls.ERROR.RESOURCE.NUMBER,params)
             },
             getList:(params:{projectId:string,timestamp:Date|number,env?: string})=>{
@@ -102,8 +102,22 @@ const apis={
             getTopScreen:(params:{projectId:string,appointNumber:number,env?:string})=>{
                 return ApiService.get(urls.USER.OVER_VIEW.TOP_SCREEN,params)
             },
-            getTopByCountry:(params: { projectId: string, isWorld: 0|1, timestamp:Date|number, env?: string }) => {
+            getTopByCountry:(params: { projectId: string, isWorld: 0|1, appointNumber?: number,  timestamp?: Date|number, env?: string }) => {
                 return ApiService.get(urls.USER.OVER_VIEW.TOP_COUNTRY, params)
+            },
+        },
+        visit:{
+            getList:(params: { projectId: string, timestamp: Date|number, pageSize: number, numSize: number, ip?: string ,}) => {
+                return ApiService.get(urls.USER.VISIT.LIST, params)
+            },
+            getPageLoadInfo:(params: { mainId: string }) => {
+                return ApiService.get(urls.USER.VISIT.PAGE_LOAD, params)
+            },
+            getApiLoadInfo:(params: { mainId: string }) => {
+                return ApiService.get(urls.USER.VISIT.API_LOAD, params)
+            },
+            getActionList:(params: { mainId: string }) => {
+                return ApiService.get(urls.USER.VISIT.ACTION, params)
             },
         }
     },
@@ -120,6 +134,34 @@ const apis={
             },
             getApiNumberInSevenDaysBySub: (params: { projectId: string,  timestamp:Date|number, env?: string }) => {
                 return ApiService.get(urls.PERFORMANCE.OVER_VIEW.API_Number_7D_By_Sub, params)
+            }
+        },
+        api: {
+            getApiNumberAndPercentage:(params: { projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.API.RANGE_NUMBER_PERCENTAGE, params)
+            },
+            getApiNumber:(params: { projectId: string, sub: number, timestamp?: Date|number, env?: string, timeType?: 'days'|'hours'|'minutes', range: number }) => {
+                return ApiService.get(urls.PERFORMANCE.API.NUMBER, params)
+            },
+            getApiMessage: (params: { projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.API.MESSAGE, params)
+            },
+            getApiInfo: (params: { address: string, projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.API.INFO, params)
+            }
+        },
+        page: {
+            getPageNumberAndPercentage:(params: { projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.PAGE.RANGE_NUMBER_PERCENTAGE, params)
+            },
+            getPageNumber:(params: { projectId: string, sub: number, timestamp?: Date|number, env?: string, timeType?: 'days'|'hours'|'minutes', range: number }) => {
+                return ApiService.get(urls.PERFORMANCE.PAGE.NUMBER, params)
+            },
+            getPageMessage: (params: { projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.PAGE.MESSAGE, params)
+            },
+            getPageInfo: (params: { url: string, projectId: string, sub: number, timestamp?: Date|number, env?: string }) => {
+                return ApiService.get(urls.PERFORMANCE.PAGE.INFO, params)
             }
         }
     }

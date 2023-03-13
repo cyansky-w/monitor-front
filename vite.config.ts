@@ -21,7 +21,7 @@ export default defineConfig({
 				changeOrigin: true
 			},
 			'/dev-api': {
-				target: ' http://81.68.222.187:10013', // 目标服务
+				target: ' http://127.0.0.1:10013', // 目标服务
 				rewrite:(path)=>path.replace(/^\/dev-api/, ""),
 				changeOrigin: true
 			},

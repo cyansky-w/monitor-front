@@ -24,7 +24,7 @@
         <div class="mb-2">
           <h4 class="fs-m fw-bold">活跃趋势</h4>
           <div style="height:100px">
-            <MCharts :option="props.option"></MCharts>
+            <MCharts :option="optionCopy"></MCharts>
           </div>
         </div>
         <div>
@@ -55,16 +55,21 @@ import MCharts from "@/components/MCharts/MCharts.vue";
 import ScrollNumber from "@/components/ScrollNumber/ScrollNumber.vue";
 import MDropDown from "@/components/MDropDown/MDropDown.vue";
 import { useProjectStore } from "@/store/project";
+import { option, initOption } from './optionIndex.js'
 
 import { onMounted, reactive, ref } from "@vue/runtime-core"
 import { useRouter } from 'vue-router'
+import { number } from "echarts";
+
+const optionCopy = reactive(JSON.parse(JSON.stringify(option)));
+
 const props=defineProps({
   projectId:{
     type:String,
     required:true
   },
   option:{
-    type:Object,
+    type:Array,
     required:true
   },
   userInfo:{
@@ -90,25 +95,33 @@ const props=defineProps({
   env:{
     type:String,
     default:"prod"
+  },
+  index:{
+    type:Number,
+    default:0
   }
 })
 const projectStore = useProjectStore();
 const router=useRouter();
 
 function gotoHome(){
-  projectStore.setProjectId(props.projectId)
+  // projectStore.setProjectId(props.projectId)
+  projectStore.selectProject();
   router.push({ name: 'home', params: { projectId:props.projectId }})
 }
 function gotoSet(){
-  router.push({ name: 'settings', params: { projectId:props.projectId }})
+  router.push({ name: 'settings', query: { projectId:props.projectId, index: props.index }})
 }
 
 let env=ref('prod')
 function onSelectEnv(env){
-  debugger
   env.value=env;
   return true
 }
+
+onMounted(async ()=>{
+  optionCopy.series[0].data = props.option;
+})
 
 </script>
 
@@ -156,7 +169,7 @@ function onSelectEnv(env){
   position:relative
 }
 .btn-set:hover::after{
-  content: '提示';
+  content: '设置';
   position: absolute ;
   top: 0;
   left: 50%;
